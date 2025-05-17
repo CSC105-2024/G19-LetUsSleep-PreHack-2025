@@ -1,4 +1,4 @@
-//import { StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
 import './index.css'
@@ -18,8 +18,7 @@ import CompanyJobPostForm from './pages/CompanyJobPostForm.jsx';
 import ConfirmPopUp from './components/ConfirmPopUp.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
-
-
+import NotFoundPage from './components/NotFoundPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -68,11 +67,11 @@ const router = createBrowserRouter([
                 element: <CompanyDashboard/>,
             },
             {
-                path: "/CompanyProfileForm",
+                path: "/CProfileForm",
                 element: <CompanyProfileForm/>,
             },
             {
-                path: "/CompanyJobPostForm",
+                path: "/CJobPostForm",
                 element: <CompanyJobPostForm/>,
             },
             {
@@ -96,7 +95,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  //<StrictMode>
+  <StrictMode>
     <RouterProvider router={router} /> 
-  //</StrictMode>,
+  </StrictMode>,
 )
