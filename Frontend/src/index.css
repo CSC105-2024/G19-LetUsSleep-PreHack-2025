@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --radius-st: rounded-2xl;
-  --radius-e: rounded-lg;
+  /*rounded-2xl(16px), rounded-lg(8px); */
   --font--mont: font-[montserrat];
   --color-lgray: #F3F3F3;
   --color-mgray: #D9D9D9;
@@ -18,7 +17,7 @@
   width: 100%;
   padding: 0.5rem 1rem; /* py-2 px-4 */
   border: 1px solid #D1D5DB; /* border-gray-300 */
-  border-radius: 16px; /* rounded-lg */
+  border-radius: 16px; /* rounded-2xl */
   font-size: 1rem;
   transition: box-shadow 0.2s ease;
   background-color: white;
@@ -32,7 +31,7 @@
 
 
 .custom-btn {
-  @apply flex w-[100px] items-center justify-center px-4 py-2 rounded text-white sm:w-[150px] sm:h-[67px] sm:p-[8px] shrink;
+  @apply flex w-[100px] items-center justify-center px-4 py-2 rounded-2xl text-white sm:w-[150px] sm:h-[67px] sm:p-[8px] shrink;
 }
 
 .btn-dpink {
@@ -42,6 +41,26 @@
 .btn-black {
   background-color: #040316;
 }
+
+.icon-delete {
+  width: 24px;
+  height: 24px;
+}
+
+@media (min-width: 640px) {
+  .icon-delete {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .icon-delete {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 
 /* h1{
     color: #000;
