@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@theme {
+  --radius-st: rounded-2xl;
+  --radius-e: rounded-lg;
+  --font--mont: font-[montserrat];
+  --color-lgray: #F3F3F3;
+  --color-mgray: #D9D9D9;
+  --color-black: #040316;
+  --color-lpink: #FBE2F3;
+  --color-dpink: #E60278;
+  --color-white: #FDFDFF;
+  --color-lblue: #CBDCEB;
+  --color-green: #5EC0B1;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 0.5rem 1rem; /* py-2 px-4 */
+  border: 1px solid #D1D5DB; /* border-gray-300 */
+  border-radius: 16px; /* rounded-lg */
+  font-size: 1rem;
+  transition: box-shadow 0.2s ease;
+  background-color: white;
+  overflow: hidden;
+}
+
+.custom-input:focus {
+  outline: none; /* focus:outline-none */
+  box-shadow: 0 0 0 2px #182740; /* focus:ring-2 focus:ring-blue-500 */
+}
+
+
+.custom-btn {
+  @apply flex w-[100px] items-center justify-center px-4 py-2 rounded text-white sm:w-[150px] sm:h-[67px] sm:p-[8px] shrink;
+}
+
+.btn-dpink {
+  background-color: #E60278; 
+}
+
+.btn-black {
+  background-color: #040316;
+}
+
+/* h1{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+} */
+
+/* body{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal; */
+    /* font Montserrat
+} */
