@@ -43,11 +43,11 @@ const router = createBrowserRouter([
                 element: <FilterBar/>,
             },
             {
-                path: "/EachCompanyJobs",
+                path: "/EachCJobs",
                 element: <EachCompanyJobs/>,
             },
             {
-                path: "/RecommendCompany",
+                path: "/RecCompany",
                 element: <RecommendCompany/>,
             },
             {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
                 element: <UserDetail/>,
             },
             {
-                path: "/CompanyDashboard",
+                path: "/CDashboard",
                 element: <CompanyDashboard/>,
             },
             {
