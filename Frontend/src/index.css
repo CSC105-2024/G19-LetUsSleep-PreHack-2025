@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: Montserrat;
+    src: url("../src/assets/fonts/Montserrat-Regular.ttf");
+}
+
 @theme {
   /*rounded-2xl(16px), rounded-lg(8px); */
-  --font--mont: font-[montserrat];
+  --font-custom-regular: Montserrat;
   --color-lgray: #F3F3F3;
   --color-mgray: #D9D9D9;
   --color-black: #040316;
@@ -10,9 +15,20 @@
   --color-dpink: #E60278;
   --color-white: #FDFDFF;
   --color-lblue: #CBDCEB;
-  --color-green: #5EC0B1;
+  --color-green: #5EC0B1; 
 }
 
+.bg-custom-gradientbp {
+  background-color: linear-gradient(270deg, var(--Color-Color-pink-dark, #E60278) 0%, #85124E 25%, #242124 59.62%);
+}
+
+body {
+    @apply font-custom-regular;
+}
+
+.text-label {
+  @apply text-lg font-semibold text-gray-700;
+}
 .custom-input {
   width: 100%;
   padding: 0.5rem 1rem; /* py-2 px-4 */
