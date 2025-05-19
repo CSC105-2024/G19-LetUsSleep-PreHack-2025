@@ -37,7 +37,7 @@ body {
   font-size: 1rem;
   transition: box-shadow 0.2s ease;
   background-color: white;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .custom-input:focus {
@@ -52,10 +52,20 @@ body {
 
 .btn-dpink {
   background-color: #E60278; 
+  
+}
+
+.btn-dpink:hover {
+  background-color: #C00165; 
+  
 }
 
 .btn-black {
   background-color: #040316;
+}
+
+.btn-black:hover {
+  filter: brightness(85%);
 }
 
 .icon-delete {
