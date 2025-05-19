@@ -1,6 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function CompanyProfileForm() {
+    const [coData, setCoData] = useState({
+        companyName: "",
+        companyOverview: "",
+        industry: "",
+        companySize: "",
+        yearEstablished: "",
+        generalBenefits: "",
+        socialMedia: "",
+        workingHours: "",
+        location: "",
+        phoneContact: "",
+        website: "",
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setCoData((prev) => ({...prev, [name]: value,}));
+    };
+
+    const handleSave = (e) => {
+        // ป้องกันการ reload หน้าจอ
+        e.preventDefault();
+        console.log('Saving data:', coData); // ส่งไป backend หรือเก็บใน local ก็ได้
+    };
+
+    const handlePublish = (e) => {
+        e.preventDefault();
+        console.log(coData); // ส่งไป backend หรือเก็บใน local ก็ได้
+    };
+    
   return (
     // background 
     <div className='bg-lgray'>
@@ -34,23 +64,26 @@ function CompanyProfileForm() {
                     {/* Company Name */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Company Name</label>
-                        <input 
+                            <input 
                             type="text" 
-                            name="Company Name"
+                            name="companyName"
+                            value={coData.companyName}
+                            onChange={handleChange}
                             placeholder="e.g., MACloudTech" 
-                            class='custom-input overflow-hidden'
+                            className='custom-input overflow-hidden'
                             required
-                        />
+                            />
                     </div>
 
                     {/* Company Overview */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Company Overview</label>
                         <textarea  
-                            type="text" 
-                            name="Company Overview"
+                            name="companyOverview"
+                            value={coData.companyOverview}
+                            onChange={handleChange}
                             placeholder="Briefly describe your company’s background and goals" 
-                            class='custom-input'
+                            className='custom-input'
                             rows="5"
                         />
                     </div>
@@ -63,26 +96,29 @@ function CompanyProfileForm() {
                           <label className="mb-[9px]">Industry</label>
                             <div className="absolute top-full w-full z-10 ">
                               <select
-                                  name="Industry"
+                                  name="industry"
+                                  value={coData.industry}
+                                  onChange={handleChange}
                                   id="Industry"
                                   className="p-2 border border-gray-300 w-full rounded-2xl bg-white"
                               >
-                                  <option value="">Select Industry</option>
-                                  <option>Information Technology</option>
-                                  <option>Finance / Banking</option>
-                                  <option>Healthcare / Medical</option>
-                                  <option>Education</option>
-                                  <option>Manufacturing</option>
-                                  <option>Retail / E-commerce</option>
-                                  <option>Hospitality / Travel</option>
-                                  <option>Construction / Real Estate</option>
-                                  <option>Marketing / Advertising</option>
-                                  <option>Telecommunications</option>
-                                  <option>Energy / Utilities</option>
-                                  <option>Logistics / Supply Chain</option>
-                                  <option>Legal / Consulting</option>
-                                  <option>Media / Entertainment</option>
-                                  <option>Government / NGO</option>
+                                    <option value="Select Industry">Select Industry</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Finance / Banking">Finance / Banking</option>
+                                    <option value="Healthcare / Medical">Healthcare / Medical</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Manufacturing">Manufacturing</option>
+                                    <option value="Retail / E-commerce">Retail / E-commerce</option>
+                                    <option value="Hospitality / Travel">Hospitality / Travel</option>
+                                    <option value="Construction / Real Estate">Construction / Real Estate</option>
+                                    <option value="Marketing / Advertising">Marketing / Advertising</option>
+                                    <option value="Telecommunications">Telecommunications</option>
+                                    <option value="Energy / Utilities">Energy / Utilities</option>
+                                    <option value="Logistics / Supply Chain">Logistics / Supply Chain</option>
+                                    <option value="Legal / Consulting">Legal / Consulting</option>
+                                    <option value="Media / Entertainment">Media / Entertainment</option>
+                                    <option value="Government / NGO">Government / NGO</option>
+
                               </select>
                             </div>
                         </div>
@@ -92,8 +128,10 @@ function CompanyProfileForm() {
                           <label className="mb-[9px]">Company Size</label>
                           <div className="absolute top-full w-full z-10 ">
                               <select
-                                  name="Company Size"
-                                  id="Company Size"
+                                  name="companySize"
+                                  id="companySize"
+                                  value={coData.companySize}
+                                  onChange={handleChange}
                                   className="p-2 border border-gray-300 w-full rounded-2xl bg-white"
                               >
                                 <option value="">Select Company Size</option>
@@ -117,7 +155,9 @@ function CompanyProfileForm() {
                             <label className='mb-[9px]'>Year Established</label>
                             <input 
                                 type="number" 
-                                name="Year Established"
+                                name="yearEstablished"
+                                value={coData.yearEstablished}
+                                onChange={handleChange}
                                 placeholder="e.g. 2015" 
                                 class='custom-input overflow-hidden'
                                 required
@@ -131,6 +171,8 @@ function CompanyProfileForm() {
                                 type="text" 
                                 name="General Benefits"
                                 placeholder="e.g. Health insurance, Remote work, Training budget, Flexible hours" 
+                                value={coData.generalBenefits}
+                                onChange={handleChange}
                                 class='custom-input'
                                 rows="5"
                                 required
@@ -146,8 +188,10 @@ function CompanyProfileForm() {
                         <label className='mb-[9px]'>Social Media</label>
                         <textarea
                             type="text" 
-                            name="Social Media"
+                            name="socialMedia"
                             placeholder="e.g. @pttorofficial / www.facebook.com/pttor" 
+                            value={coData.socialMedia}
+                            onChange={handleChange}
                             class='custom-input'
                             rows="5"
                             
@@ -159,8 +203,10 @@ function CompanyProfileForm() {
                         <label className='mb-[9px]'>Working Hours *</label>
                         <input 
                             type="text" 
-                            name="Working Hours *"
+                            name="workingHours"
                             placeholder="e.g. Monday – Friday, 9:00 AM – 5:30 PM" 
+                            value={coData.workingHours}
+                            onChange={handleChange}
                             class='custom-input'
                             required
                         />
@@ -173,6 +219,8 @@ function CompanyProfileForm() {
                             type="text" 
                             name="location"
                             placeholder="e.g. 99 Innovation Ave, Tech City, Country"
+                            value={coData.location}
+                            onChange={handleChange}
                             class='custom-input'
                             rows={3}
                             required
@@ -184,7 +232,9 @@ function CompanyProfileForm() {
                         <label className='mb-[9px]'>Phone Contact</label>
                         <textarea 
                             type="text" 
-                            name="Phone Contact"
+                            name="phoneContact"
+                            value={coData.phoneContact}
+                            onChange={handleChange}
                             placeholder="e.g. +1 234 567 8901" 
                             class='custom-input'
                             rows={2}
@@ -196,8 +246,10 @@ function CompanyProfileForm() {
                         <label className='mb-[9px]'>Website</label>
                         <textarea 
                             type="text" 
-                            name="Website"
+                            name="website"
                             placeholder="e.g. www.MACloudTech.io" 
+                            value={coData.website}
+                            onChange={handleChange}
                             class='custom-input'
                             rows={2}
                         />
@@ -205,8 +257,14 @@ function CompanyProfileForm() {
 
                     {/* Button */}
                     <div className='flex justify-end pt-[153px] gap-2 '>
-                      <button className="custom-btn btn-dpink" type='submit'>Save</button>
-                      <button className="custom-btn btn-black" type='submit'>Publish</button>
+                        <button onClick={handleSave} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>
+                            Save
+                        </button>
+                        <button 
+                            onClick={handlePublish} 
+                            className="custom-btn btn-black btn-black:hover" type='submit'>
+                                Publish
+                        </button>
                     </div>
                 </div>
 
@@ -217,19 +275,3 @@ function CompanyProfileForm() {
 }
 
 export default CompanyProfileForm
-
-{/* <option value="">Information Technology</option>
-                                  <option value="">Finance / Banking / Insurance</option>
-                                  <option value="">Healthcare / Medical</option>
-                                  <option value="">Education / Training</option>
-                                  <option value="">Manufacturing / Industrial</option>
-                                  <option value="">Retail / Wholesale / E-commerce</option>
-                                  <option value="">Hospitality / Travel / Leisure</option>
-                                  <option value="">Construction / Real Estate</option>
-                                  <option value="">Marketing / Advertising / PR</option>
-                                  <option value="">Telecommunications</option>
-                                  <option value="">Energy / Utilities</option>
-                                  <option value="">Transportation / Logistics / Supply Chain</option>
-                                  <option value="">Legal / Consulting / Professional Services</option>
-                                  <option value="">Media / Publishing / Entertainment</option>
-                                  <option value="">Government / Public Sector / NGO</option> */}
