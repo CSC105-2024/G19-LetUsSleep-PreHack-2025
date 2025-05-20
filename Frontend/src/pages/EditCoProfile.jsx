@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function EditCoProfile() {
+    const navigate = useNavigate();
     const [coData, setCoData] = useState({
         companyName: "",
         companyOverview: "",
@@ -63,7 +65,7 @@ function EditCoProfile() {
 
                     {/* Company Name */}
                     <div className='flex flex-col pb-[32px]'>
-                        <label className='mb-[9px]'>Company Name</label>
+                        <label className='mb-[9px]'>Edit Company Name</label>
                             <input 
                             type="text" 
                             name="companyName"
@@ -257,14 +259,8 @@ function EditCoProfile() {
 
                     {/* Button */}
                     <div className='flex justify-end pt-[153px] gap-2 '>
-                        <button onClick={handleSave} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>
-                            Save
-                        </button>
-                        <button 
-                            onClick={handlePublish} 
-                            className="custom-btn btn-black btn-black:hover" type='submit'>
-                                Publish
-                        </button>
+                        <button onClick = {(e) => {e.preventDefault; navigate("/IsSavePopUp")}} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>Save</button>
+                            <button onClick = {(e) => {e.preventDefault; navigate("/IsPublishPopUp")}} className="custom-btn btn-black btn-black:hover" type='submit'>Publish</button>
                     </div>
                 </div>
 

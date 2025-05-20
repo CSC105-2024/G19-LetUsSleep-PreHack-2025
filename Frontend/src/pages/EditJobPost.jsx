@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // ดึง data เข้ามาจาก backend มาใส่
 function EditJobPost() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [jobData, setJobData] = useState({
         jobTitle: '',
         jobDescription: '',
@@ -200,9 +201,8 @@ function EditJobPost() {
 
                         {/* Button */}
                         <div className='flex justify-end pt-[153px] gap-2 '>
-                            <button onClick={handleSave} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>Save</button>
-                            <button onClick={handlePublish} 
-                             className="custom-btn btn-black btn-black:hover" type='submit'>Publish</button>
+                            <button onClick = {(e) => {e.preventDefault; navigate("/IsSavePopUp")}} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>Save</button>
+                            <button onClick = {(e) => {e.preventDefault; navigate("/IsPublishPopUp")}} className="custom-btn btn-black btn-black:hover" type='submit'>Publish</button>
                         </div>
                     </div>
                 </div>

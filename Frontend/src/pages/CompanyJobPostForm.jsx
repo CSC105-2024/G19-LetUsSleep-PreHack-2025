@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
+// import { useNavigate } from 'react-router-dom';
+// import IsPublishPopUp from '../components/IsPublishPopUp';
 
 function CompanyJobPostForm() {
+    //const navigate = useNavigate();
+    const [showSavePopup, setShowSavePopup] = useState(false);
+    const [showConfirmPublishPopup, setShowConfirmPublishPopup] = useState(false);
+    const [showPublishSuccessPopup, setShowPublishSuccessPopup] = useState(false);
+
+    
     const [jobData, setJobData] = useState({
         jobTitle: '',
         jobDescription: '',
@@ -21,14 +29,29 @@ function CompanyJobPostForm() {
     };
 
     const handleSave = (e) => {
-        // ป้องกันการ reload หน้าจอ
         e.preventDefault();
-        console.log('Saving data:', jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
+        console.log('Saving data:', jobData);
+        setShowSavePopup(true); // show popup
+        setTimeout(()=>{
+            setShowSavePopup(false);
+        },3000);
+         // ส่งไป backend หรือเก็บใน local ก็ได้
     };
 
     const handlePublish = (e) => {
         e.preventDefault();
-        console.log(jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
+        // console.log(jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
+        setShowConfirmPublishPopup(true); 
+    };
+
+    const handlePublishSuccess = (e) => {
+        e.preventDefault();
+        console.log(jobData);
+        setShowConfirmPublishPopup(false);
+        setShowPublishSuccessPopup(true); 
+        setTimeout(()=>{
+            setShowPublishSuccessPopup(false);
+        },3000);
     };
 
   return (
@@ -201,17 +224,55 @@ function CompanyJobPostForm() {
                         </div>
 
                         {/* Button */}
+                        
                         <div className='flex justify-end pt-[153px] gap-2 '>
-                            <button onClick={handleSave} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>Save</button>
-                            <button onClick={handlePublish} 
-                             className="custom-btn btn-black btn-black:hover" type='submit'>Publish</button>
+                            <button onClick = {handleSave} className='custom-btn 
+                            btn-dpink btn-dpink:hover'>Save</button>
+                            <button onClick = {handlePublish} className='custom-btn 
+                            btn-black btn-black:hover'>Publish</button>
+                        </div> 
+
+                        {showSavePopup && (
+                            <>
+                            <div className="fixed inset-0 backdrop-blur-sm bg-black/30 z-40"></div>
+                            <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                                        bg-green-500 text-white px-6 py-3 rounded shadow-lg z-50">
+                            ✅ Saved successfully!
                         </div>
+                            </>
+                        )}
+
+                        {showConfirmPublishPopup && (
+                            <>
+                            <div className="fixed inset-0 backdrop-blur-sm bg-black/30 z-40"></div>
+                            <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black px-6 sm:px-10 py-3 sm:py-5 rounded shadow-lg z-50 flex flex-col items-center justify-center gap-5">
+                            <div className='flex flex-col items-center justify-center'>
+                                <p>Are you sure you want to publish</p>
+                                <p>this job post</p> 
+                            </div>
+                            <div className='flex gap-2'>
+                                <button className='custom-btn btn-dpink btn-dpink:hover' onClick={() => setShowConfirmPublishPopup(false)} >back</button>
+                                <button className='custom-btn btn-black btn-black:hover' onClick={handlePublishSuccess}>Publish</button>
+                            </div>
+                        </div>
+                            </>
+                        
+                        )}
+
+                        {showPublishSuccessPopup && (
+                            <>
+                            <div className="fixed inset-0 backdrop-blur-sm bg-black/30 z-40"></div>
+                            <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                                        bg-green-500 text-white px-6 py-3 rounded shadow-lg z-50">
+                                    ✅ Publish successfully!
+                            </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </form>
         </div>
-    </div>
-    
+    </div>    
   );
 }
 
