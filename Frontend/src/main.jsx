@@ -19,9 +19,9 @@ import ConfirmPopUp from './components/ConfirmPopUp.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import NotFoundPage from './components/NotFoundPage.jsx';
-import JobPostCard from './components/JobPostCard.jsx';
 import JobApplicantLists from './components/JobApplicantLists.jsx';
 import EditJobPost from './pages/EditJobPost.jsx';
+import EditCoProfile from './pages/EditCoProfile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +36,6 @@ const router = createBrowserRouter([
                 path: "/SearchJob",
                 element: <SearchJob/>,
             },
-            
             {
                 path: "/JobDetails",
                 element: <JobDetails/>,
@@ -82,12 +81,8 @@ const router = createBrowserRouter([
                 element: <EditJobPost/>,
             },
             {
-                path: "/JobPostCard",
-                element: <JobPostCard/>,
-            },
-            {
-                path: "/JobApplicantLists",
-                element: <JobApplicantLists/>,
+                path: "/EditCoProfile",
+                element: <EditCoProfile/>,
             },
             {
                 path: "/ConfirmPopUp",
