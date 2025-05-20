@@ -1,6 +1,6 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import './index.css'
 import App from './App.jsx'
 import Home from './pages/Home.jsx';
@@ -24,10 +24,10 @@ import EditJobPost from './pages/EditJobPost.jsx';
 import EditCoProfile from './pages/EditCoProfile.jsx';
 
 const router = createBrowserRouter([
-  {
-    path: "/", 
-    element: <App />, 
-    children: [
+    {
+        path: "/",
+        element: <App/>,
+        children: [
             {
                 index: true,
                 element: <Home/>,
@@ -96,6 +96,10 @@ const router = createBrowserRouter([
                 path: "/Footer",
                 element: <Footer/>,
             },
+            {
+                path: "/Login",
+                element: <Login/>,
+            },
         ],
     },
     {
@@ -105,7 +109,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} /> 
-  </StrictMode>,
+    <StrictMode>
+        <RouterProvider router={router}/>
+    </StrictMode>,
 )
