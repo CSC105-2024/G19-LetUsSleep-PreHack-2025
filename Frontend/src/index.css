@@ -4,10 +4,22 @@
     font-family: Montserrat;
     src: url("../src/assets/fonts/Montserrat-Regular.ttf");
 }
-
+@font-face {
+  font-family: Montserrat-semibold;
+  src: url("../src/assets/fonts/Montserrat-SemiBold.ttf");
+}
+@font-face {
+  font-family: Montserrat-bold;
+  src: url("../src/assets/fonts/Montserrat-Bold.ttf");
+}@font-face {
+  font-family: Montserrat-semibold;
+  src: url("../src/assets/fonts/Montserrat-SemiBold.ttf");
+}
 @theme {
   /*rounded-2xl(16px), rounded-lg(8px); */
   --font-custom-regular: Montserrat;
+  --font-custom-semibold: Montserrat-semibold;
+  --font-custom-bold: Montserrat-bold;
   --color-lgray: #F3F3F3;
   --color-mgray: #D9D9D9;
   --color-black: #040316;
@@ -47,7 +59,11 @@ body {
 
 
 .custom-btn {
-  @apply flex w-[100px] items-center justify-center px-4 py-2 rounded-2xl text-white sm:w-[150px] sm:h-[67px] sm:p-[8px] shrink;
+  @apply flex w-[100px] items-center justify-center px-4 py-2 rounded-2xl text-white sm:w-[120px] sm:h-[50px] sm:p-[8px] shrink;
+}
+
+.custom-btn-full {
+  @apply flex w-full items-center justify-center px-4 py-2 rounded-2xl text-white sm:w-full sm:h-[50px] sm:p-[6px] shrink;
 }
 
 .btn-dpink {
