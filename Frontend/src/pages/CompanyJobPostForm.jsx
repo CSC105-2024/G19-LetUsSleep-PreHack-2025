@@ -40,7 +40,7 @@ function CompanyJobPostForm() {
 
             {/* Box Title + bin icon */}
             <div className='flex justify-between'>
-                <h1 className='pb-[30px]'>Post Job(Draft)</h1>
+                <h1 className='pb-[30px] font-extrabold text-2xl'>Post Job(Draft)</h1>
                 <div>
                     {/* Check again */}
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-delete" viewBox="0 0 39 40" fill="none" strokeWidth="0.25">
@@ -57,7 +57,7 @@ function CompanyJobPostForm() {
 
                     {/* job title */}
                     <div className='flex flex-col pb-[32px]'>
-                        <label className='mb-[9px]'>Job Title*</label>
+                        <label className='mb-[9px] font-semibold'>Job Title*</label>
                         <input 
                             type="text" 
                             name="jobTitle"
