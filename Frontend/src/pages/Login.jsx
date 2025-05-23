@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { IconEye, IconEyeClosed } from "@tabler/icons-react";
+import React, {useState} from "react";
+import {IconEye, IconEyeClosed} from "@tabler/icons-react";
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="flex h-screen bg-lblue">
+        <div className="flex h-screen"
+             style={{background: 'linear-gradient(270deg, #FFB6D9 0%, #FFE6F0 25%, #FDFDFF 59.62%)'}}
+        >
             <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-10">
                 <h2 className="text-3xl font-extrabold mb-6 text-black">LOG IN</h2>
 
@@ -26,7 +28,7 @@ export default function Login() {
                         className="absolute inset-y-0 right-3 flex items-center"
                         onClick={() => setShowPassword(!showPassword)}
                     >
-                        {showPassword ? <IconEye/> : <IconEyeClosed/> }
+                        {showPassword ? <IconEye/> : <IconEyeClosed/>}
                     </button>
                 </div>
 
