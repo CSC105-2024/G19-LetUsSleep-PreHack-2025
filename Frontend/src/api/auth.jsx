@@ -101,10 +101,11 @@ export const authAPI = {
     // Company login
     loginCompany: async (credentials) => {
         try {
-            const response = await api.post('/auth/login/company', {
-                email: credentials.email,
-                password: credentials.password,
-            });
+            const response = await api.post('/auth/login/company',
+                {
+                    email: credentials.email,
+                    password: credentials.password,
+                });
 
             // Store token and company data if you want to use localStorage
             if (response.data.data?.token) {

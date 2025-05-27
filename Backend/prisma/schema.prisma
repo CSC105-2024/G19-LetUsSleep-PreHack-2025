@@ -23,7 +23,7 @@ model User {
   Bdate                DateTime? // Maps to dateOfBirth from frontend
   age                  Int? // Calculated field
   Telphone             String? // Maps to phoneNumber from frontend
-  Email                String? // Maps to email from frontend
+  Email                String    @unique
   password             String
   ResumeURL            String? // Maps to resumeUrl from frontend
 
@@ -52,7 +52,7 @@ model Company {
   GeneralBe   String?
   location    String // Maps to location from frontend
   Telcontact  String? // Maps to phoneNumber from frontend
-  Email       String? // Added: missing email field for companies
+  Email       String   @unique
   WebsiteURL  String?
   password    String
   Job         Job[]
