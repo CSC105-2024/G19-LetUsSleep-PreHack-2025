@@ -120,27 +120,42 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  identificationNumber: 'identificationNumber',
   firstName: 'firstName',
   lastName: 'lastName',
   Bdate: 'Bdate',
+  age: 'age',
   Telphone: 'Telphone',
   Email: 'Email',
   password: 'password',
-  ResumeURL: 'ResumeURL'
+  ResumeURL: 'ResumeURL',
+  hasExperience: 'hasExperience',
+  jobTitle: 'jobTitle',
+  companyName: 'companyName',
+  startYear: 'startYear',
+  startMonth: 'startMonth',
+  endYear: 'endYear',
+  endMonth: 'endMonth',
+  stillInRole: 'stillInRole',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CompanyScalarFieldEnum = {
   id: 'id',
   Name: 'Name',
   Overview: 'Overview',
-  Industy: 'Industy',
+  Industry: 'Industry',
   CompanySize: 'CompanySize',
   YearEst: 'YearEst',
   GeneralBe: 'GeneralBe',
   location: 'location',
   Telcontact: 'Telcontact',
+  Email: 'Email',
   WebsiteURL: 'WebsiteURL',
-  password: 'password'
+  password: 'password',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.JobScalarFieldEnum = {
@@ -155,7 +170,9 @@ exports.Prisma.JobScalarFieldEnum = {
   minSalary: 'minSalary',
   maxSalary: 'maxSalary',
   published: 'published',
-  CompanyId: 'CompanyId'
+  CompanyId: 'CompanyId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ApplicationScalarFieldEnum = {

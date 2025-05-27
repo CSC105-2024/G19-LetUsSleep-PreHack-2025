@@ -9,7 +9,7 @@ export default function Login() {
              style={{background: 'linear-gradient(270deg, #FFB6D9 0%, #FFE6F0 25%, #FDFDFF 59.62%)'}}
         >
             <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-10">
-                <h2 className="text-3xl font-extrabold mb-6 text-black">LOG IN</h2>
+                <h2 className="text-3xl font-bold mb-6 text-black">LOG IN</h2>
 
                 <input
                     type="email"
@@ -25,7 +25,7 @@ export default function Login() {
                     />
                     <button
                         type="button"
-                        className="absolute inset-y-0 right-3 flex items-center"
+                        className="absolute inset-y-0 right-3 flex items-center text-dgray"
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ? <IconEye/> : <IconEyeClosed/>}
@@ -38,7 +38,7 @@ export default function Login() {
 
                 <p className="mt-4 text-sm text-gray-600">
                     Don’t have an account{" "}
-                    <a href="/register" className="text-pink-600 font-bold hover:underline decoration-2 ml-2">
+                    <a href="/register" className="text-pink-600 font-bold hover:underline decoration-2">
                         Register
                     </a>
                 </p>

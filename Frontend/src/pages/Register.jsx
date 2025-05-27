@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
-import {IconEye, IconEyeClosed} from "@tabler/icons-react";
+import React, { useState } from 'react'
+import { IconEye, IconEyeClosed } from "@tabler/icons-react";
+import { authAPI } from "../api/auth"; // Adjust path as needed
 
 function Register() {
     const [activeTab, setActiveTab] = useState('jobSeeker');
-
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     // Job seeker form state
     const [jobSeekerData, setJobSeekerData] = useState({
@@ -31,34 +34,125 @@ function Register() {
 
     // Handle job seeker form changes
     const handleJobSeekerChange = (e) => {
-        const {name, value, type, checked} = e.target;
+        const { name, value, type, checked } = e.target;
         setJobSeekerData((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
         }));
+        // Clear messages when user starts typing
+        if (error) setError("");
+        if (success) setSuccess("");
     };
 
     // Handle company form changes
     const handleCompanyChange = (e) => {
-        const {name, value, type, checked} = e.target;
+        const { name, value, type, checked } = e.target;
         setCompanyData((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
         }));
+        // Clear messages when user starts typing
+        if (error) setError("");
+        if (success) setSuccess("");
     };
 
     // Handle job seeker form submit
-    const handleJobSeekerSubmit = (e) => {
+    const handleJobSeekerSubmit = async (e) => {
         e.preventDefault();
-        console.log("Job Seeker Form submitted:", jobSeekerData);
-        // Add your registration logic here
+        setIsLoading(true);
+        setError("");
+        setSuccess("");
+
+        try {
+            // Validate required fields
+            if (!jobSeekerData.firstName || !jobSeekerData.lastName ||
+                !jobSeekerData.email || !jobSeekerData.password) {
+                throw { error: "Please fill in all required fields" };
+            }
+
+            // Validate terms agreement
+            if (!jobSeekerData.termsAgreed) {
+                throw { error: "Please agree to the Terms of Use and Privacy Policy" };
+            }
+
+            // Call API
+            const result = await authAPI.registerUser(jobSeekerData);
+            console.log("User registration successful:", result);
+
+            setSuccess("Registration successful! You can now login.");
+
+            // Reset form
+            setJobSeekerData({
+                identificationNumber: "",
+                firstName: "",
+                lastName: "",
+                phoneNumber: "",
+                email: "",
+                password: "",
+                termsAgreed: false
+            });
+
+            // Optionally redirect to login after a delay
+            setTimeout(() => {
+                window.location.href = "/login";
+            }, 2000);
+
+        } catch (err) {
+            console.error("Registration error:", err);
+            setError(err.error || "Registration failed. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     // Handle company form submit
-    const handleCompanySubmit = (e) => {
+    const handleCompanySubmit = async (e) => {
         e.preventDefault();
-        console.log("Company Form submitted:", companyData);
-        // Add your registration logic here
+        setIsLoading(true);
+        setError("");
+        setSuccess("");
+
+        try {
+            // Validate required fields
+            if (!companyData.companyName || !companyData.location ||
+                !companyData.email || !companyData.password) {
+                throw { error: "Please fill in all required fields" };
+            }
+
+            // Validate terms agreement
+            if (!companyData.termsAgreed) {
+                throw { error: "Please agree to the Terms of Use and Privacy Policy" };
+            }
+
+            // Call API
+            const result = await authAPI.registerCompany(companyData);
+            console.log("Company registration successful:", result);
+
+            setSuccess("Company registration successful! You can now login.");
+
+            // Reset form
+            setCompanyData({
+                companyName: "",
+                industry: "",
+                companySize: "",
+                location: "",
+                phoneNumber: "",
+                email: "",
+                password: "",
+                termsAgreed: false
+            });
+
+            // Optionally redirect to login after a delay
+            setTimeout(() => {
+                window.location.href = "/login";
+            }, 2000);
+
+        } catch (err) {
+            console.error("Company registration error:", err);
+            setError(err.error || "Registration failed. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -73,6 +167,7 @@ function Register() {
                             <button
                                 className={`${activeTab === 'jobSeeker' ? 'text-pink-500 font-bold border-b-4 border-pink-500 p-2' : 'p-2 text-gray-500 hover:text-gray-700'}`}
                                 onClick={() => setActiveTab('jobSeeker')}
+                                disabled={isLoading}
                             >
                                 JOB SEEKER
                             </button>
@@ -81,11 +176,25 @@ function Register() {
                             <button
                                 className={`${activeTab === 'company' ? 'text-pink-500 font-bold border-b-4 border-pink-500 p-2' : 'p-2 text-gray-500 hover:text-gray-700'}`}
                                 onClick={() => setActiveTab('company')}
+                                disabled={isLoading}
                             >
                                 COMPANY
                             </button>
                         </div>
                     </div>
+
+                    {/* Success/Error Messages */}
+                    {error && (
+                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                            {error}
+                        </div>
+                    )}
+
+                    {success && (
+                        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+                            {success}
+                        </div>
+                    )}
                 </div>
 
                 {/* Job Seeker Registration Form */}
@@ -101,7 +210,8 @@ function Register() {
                                     value={jobSeekerData.identificationNumber}
                                     onChange={handleJobSeekerChange}
                                     placeholder="Identification Number"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
                                 />
                             </div>
 
@@ -114,7 +224,9 @@ function Register() {
                                         value={jobSeekerData.firstName}
                                         onChange={handleJobSeekerChange}
                                         placeholder="First Name"
-                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                        disabled={isLoading}
+                                        required
                                     />
                                 </div>
                                 <div className="w-1/2">
@@ -124,7 +236,9 @@ function Register() {
                                         value={jobSeekerData.lastName}
                                         onChange={handleJobSeekerChange}
                                         placeholder="Last Name"
-                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                        disabled={isLoading}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -137,7 +251,8 @@ function Register() {
                                     value={jobSeekerData.phoneNumber}
                                     onChange={handleJobSeekerChange}
                                     placeholder="Phone Number"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
                                 />
                             </div>
 
@@ -149,25 +264,31 @@ function Register() {
                                     value={jobSeekerData.email}
                                     onChange={handleJobSeekerChange}
                                     placeholder="Email"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
+                                    required
                                 />
                             </div>
 
                             {/* Password */}
                             <div className="mb-6 relative">
                                 <input
-                                    type={showPassword ? "text" : "password"} name="password"
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
                                     value={jobSeekerData.password}
                                     onChange={handleJobSeekerChange}
                                     placeholder="Password"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
+                                    required
                                 />
                                 <button
                                     type="button"
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dgray"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
                                     onClick={() => setShowPassword(!showPassword)}
+                                    disabled={isLoading}
                                 >
-                                    {showPassword ? <IconEye/> : <IconEyeClosed/>}
+                                    {showPassword ? <IconEye size={20} /> : <IconEyeClosed size={20} />}
                                 </button>
                             </div>
 
@@ -179,6 +300,8 @@ function Register() {
                                     checked={jobSeekerData.termsAgreed}
                                     onChange={handleJobSeekerChange}
                                     className="mt-1 mr-2"
+                                    disabled={isLoading}
+                                    required
                                 />
                                 <label className="text-sm">
                                     I have read and agreed with the Terms of Use and Privacy Policy
@@ -188,14 +311,15 @@ function Register() {
                             {/* Register Button */}
                             <button
                                 type="submit"
-                                className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded w-full mb-4"
+                                disabled={isLoading}
+                                className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded w-full mb-4 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                             >
-                                REGISTER
+                                {isLoading ? "REGISTERING..." : "REGISTER"}
                             </button>
 
                             {/* Login Link */}
                             <div className="text-center">
-                                Already have an account? <a href="/login" className="text-dpink font-bold">Login</a>
+                                Already have an account? <a href="/login" className="text-pink-500 font-bold hover:underline">Login</a>
                             </div>
                         </form>
                     </div>
@@ -215,7 +339,9 @@ function Register() {
                                     value={companyData.companyName}
                                     onChange={handleCompanyChange}
                                     placeholder="Company Name"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
+                                    required
                                 />
                             </div>
 
@@ -227,7 +353,8 @@ function Register() {
                                         name="industry"
                                         value={companyData.industry}
                                         onChange={handleCompanyChange}
-                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                        disabled={isLoading}
                                     >
                                         <option value="">Industry</option>
                                         <option value="Information Technology">Information Technology</option>
@@ -254,7 +381,8 @@ function Register() {
                                         name="companySize"
                                         value={companyData.companySize}
                                         onChange={handleCompanyChange}
-                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                        className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                        disabled={isLoading}
                                     >
                                         <option value="">Company Size</option>
                                         <option value="1-10">1-10</option>
@@ -277,7 +405,9 @@ function Register() {
                                     value={companyData.location}
                                     onChange={handleCompanyChange}
                                     placeholder="Location"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
+                                    required
                                 />
                             </div>
 
@@ -289,7 +419,8 @@ function Register() {
                                     value={companyData.phoneNumber}
                                     onChange={handleCompanyChange}
                                     placeholder="Phone Number"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
                                 />
                             </div>
 
@@ -301,7 +432,9 @@ function Register() {
                                     value={companyData.email}
                                     onChange={handleCompanyChange}
                                     placeholder="Email"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
+                                    required
                                 />
                             </div>
 
@@ -313,14 +446,17 @@ function Register() {
                                     value={companyData.password}
                                     onChange={handleCompanyChange}
                                     placeholder="Password"
-                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full"
+                                    className="p-3 border border-gray-200 bg-gray-50 rounded w-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                    disabled={isLoading}
+                                    required
                                 />
                                 <button
                                     type="button"
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
                                     onClick={() => setShowPassword(!showPassword)}
+                                    disabled={isLoading}
                                 >
-                                    {showPassword ? <IconEye/> : <IconEyeClosed/>}
+                                    {showPassword ? <IconEye size={20} /> : <IconEyeClosed size={20} />}
                                 </button>
                             </div>
 
@@ -332,6 +468,8 @@ function Register() {
                                     checked={companyData.termsAgreed}
                                     onChange={handleCompanyChange}
                                     className="mt-1 mr-2"
+                                    disabled={isLoading}
+                                    required
                                 />
                                 <label className="text-sm">
                                     I have read and agreed with the Terms of Use and Privacy Policy
@@ -341,14 +479,15 @@ function Register() {
                             {/* Register Button */}
                             <button
                                 type="submit"
-                                className="bg-black text-white font-bold py-3 px-4 rounded w-full mb-4"
+                                disabled={isLoading}
+                                className="bg-black text-white font-bold py-3 px-4 rounded w-full mb-4 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                             >
-                                REGISTER
+                                {isLoading ? "REGISTERING..." : "REGISTER"}
                             </button>
 
                             {/* Login Link */}
                             <div className="text-center">
-                                Already have an account? <a href="/login" className="text-pink-500 font-bold">Login</a>
+                                Already have an account? <a href="/login" className="text-pink-500 font-bold hover:underline">Login</a>
                             </div>
                         </form>
                     </div>

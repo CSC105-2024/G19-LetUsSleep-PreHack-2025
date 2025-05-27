@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {IconEye, IconEyeClosed} from "@tabler/icons-react";
 
-
 export default function UserInfoForm() {
     const [user, setUser] = useState({
         firstName: '',

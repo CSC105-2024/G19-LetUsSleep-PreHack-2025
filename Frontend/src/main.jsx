@@ -19,7 +19,7 @@ import ConfirmPopUp from './components/ConfirmPopUp.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import NotFoundPage from './components/NotFoundPage.jsx';
-import JobApplicantLists from './components/JobApplicantLists.jsx';
+// import JobApplicantLists from './components/JobApplicantLists.jsx';
 import EditJobPost from './pages/EditJobPost.jsx';
 import EditCoProfile from './pages/EditCoProfile.jsx';
 
