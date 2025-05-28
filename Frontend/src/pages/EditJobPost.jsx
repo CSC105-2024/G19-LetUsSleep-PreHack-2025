@@ -27,11 +27,25 @@ function EditJobPost() {
     };
 
 
-    const handleSave = (e) => {
-        // ป้องกันการ reload หน้าจอ
-        e.preventDefault();
-        console.log('Saving data:', jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
-    };
+    const handleSave = async (e) => {
+  e.preventDefault();
+  const payload = {
+    title: jobData.jobTitle,
+    Desciption: jobData.jobDescription,
+    Responbility: jobData.responsibilities,
+    Qualification: jobData.qualifications,
+    Benenfit: jobData.benefits,
+    workingHours: jobData.workingHours,
+    location: jobData.location,
+    JobType: jobData.employmentType,
+    minSalary: Number(jobData.minSalary),
+    maxSalary: Number(jobData.maxSalary),
+    published: false,
+    CompanyId: companyId, // Capital C
+    categories: "",
+  };
+  // Call your updateJobAPI(id, payload) here
+};
 
 
     const handlePublish = (e) => {

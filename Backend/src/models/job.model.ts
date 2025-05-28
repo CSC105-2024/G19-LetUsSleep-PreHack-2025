@@ -54,6 +54,7 @@ type JobFilters = {
 export const JobModel = {
 
   createJob : async (jobData: CreateJobInput) => {
+    console.log("Job Data:", jobData);
      try {
       const company = await db.company.findUnique({
       where: { id: jobData.companyId }
@@ -167,7 +168,7 @@ export const JobModel = {
     )}
   },
 
-  updateJob: async (id: number, jobData:JobType) => {
+updateJob: async (id: number, jobData: any) => {
     return await db.job.update({
       where: { id : id },
       data : {
