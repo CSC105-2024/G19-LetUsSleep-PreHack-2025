@@ -161,18 +161,17 @@ exports.Prisma.CompanyScalarFieldEnum = {
 exports.Prisma.JobScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  Desciption: 'Desciption',
-  Responbility: 'Responbility',
-  Qualification: 'Qualification',
-  Benenfit: 'Benenfit',
+  desciption: 'desciption',
+  responbility: 'responbility',
+  qualification: 'qualification',
+  benenfit: 'benenfit',
   workingHours: 'workingHours',
-  JobType: 'JobType',
+  jobType: 'jobType',
   minSalary: 'minSalary',
   maxSalary: 'maxSalary',
   published: 'published',
-  CompanyId: 'CompanyId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  companyId: 'companyId',
+  categories: 'categories'
 };
 
 exports.Prisma.ApplicationScalarFieldEnum = {
@@ -180,11 +179,6 @@ exports.Prisma.ApplicationScalarFieldEnum = {
   userId: 'userId',
   jobId: 'jobId',
   appliedAt: 'appliedAt'
-};
-
-exports.Prisma.CategoryScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
 };
 
 exports.Prisma.SortOrder = {
@@ -202,8 +196,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Company: 'Company',
   Job: 'Job',
-  Application: 'Application',
-  Category: 'Category'
+  Application: 'Application'
 };
 
 /**

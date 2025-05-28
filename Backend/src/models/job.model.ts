@@ -63,21 +63,21 @@ export const JobModel = {
       throw new Error(`Company with ID ${jobData.companyId} not found`);
     }
       const job = await db.job.create({
-      data : {
-        title : jobData.title,
-        companyId: jobData.companyId,
-        jobType: jobData.jobType,
-        minSalary: jobData.minSalary,
-        maxSalary: jobData.maxSalary,
-        categories: jobData.categories,
-        desciption: jobData.description,
-        responbility: jobData.responsibility,
-        qualification: jobData.qualification,
-        benenfit: jobData.benefit,
-        workingHours: jobData.workingHours,
-        published: jobData.published
-      }
-    });
+  data: {
+    title: jobData.title,
+    desciption: jobData.description,         // match schema
+    responbility: jobData.responsibility,    // match schema
+    qualification: jobData.qualification,    // match schema
+    benenfit: jobData.benefit,               // match schema
+    workingHours: jobData.workingHours,
+    jobType: jobData.jobType,                // match schema
+    minSalary: jobData.minSalary,
+    maxSalary: jobData.maxSalary,
+    published: jobData.published,
+    companyId: jobData.companyId,            // match schema
+    categories: jobData.categories,          // if this is a string[] or relation, adjust accordingly
+  }
+});
     return job;
     } 
     catch (error) {
@@ -107,22 +107,36 @@ export const JobModel = {
 
   getJobByFilter: async (filters:JobFilters) => {
 
-    let jt = "";
-    let el = "";
+    let ft = "";
+    let pt = "";
+    let is = "";
+    let pw = "";
     if(filters.jobTypes.fullTime == true){
-        jt = "Full-Time " + jt;
+        ft = "Full Time";
     }
     if(filters.jobTypes.partTime == true){
-        jt = "Part-Time " + jt;
+        pt = "Part Time";
     }
     if(filters.jobTypes.internship == true){
-        jt = "Internship " + jt;
+        is = "Internship";
     }
     if(filters.jobTypes.projectWork == true){
-        jt = "ProjectWork " + jt;
+        pw = "ProjectWork";
     }
+   const alljob = await db.job.findMany({
+    where : {
+      published : true,
+    }
+   })
+
+    const filjob : Job[] = alljob.filter(
+      (job) => job.jobType == ft || 
+      job.jobType == pt ||
+      job.jobType == is ||
+      job.jobType == pw
+    )
     
-    const filjob = await db.job.findMany({ 
+    /*const filjob = await db.job.findMany({ 
       where: { 
           published: true,
           jobType : {
@@ -131,7 +145,7 @@ export const JobModel = {
           categories : filters.category
         },
       }
-    )
+    )*/
     let filsalary: Job[] = filjob.filter((job) => 
       job.maxSalary <= filters.salaryRange.max &&
       job.minSalary >= filters.salaryRange.min);

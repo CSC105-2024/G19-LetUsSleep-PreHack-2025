@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { createJobAPI } from '../api/job';
 // import { useNavigate } from 'react-router-dom';
 // import IsPublishPopUp from '../components/IsPublishPopUp';
 
 
 function CompanyJobPostForm() {
     //const navigate = useNavigate();
-    // const jobId = 1;
+    const companyId = 1;
     const [showSavePopup, setShowSavePopup] = useState(false);
     const [showConfirmPublishPopup, setShowConfirmPublishPopup] = useState(false);
     const [showPublishSuccessPopup, setShowPublishSuccessPopup] = useState(false);
@@ -33,14 +34,28 @@ function CompanyJobPostForm() {
     };
 
 
-    const handleSave = (e) => {
+       const handleSave = async (e) => {
         e.preventDefault();
-        console.log('Saving data:', jobData);
-        setShowSavePopup(true); // show popup
-        setTimeout(()=>{
-            setShowSavePopup(false);
-        },3000);
-         // ส่งไป backend หรือเก็บใน local ก็ได้
+        const payload = {
+            title: jobData.jobTitle,
+            Desciption: jobData.jobDescription,
+            Responsibility: jobData.responsibilities,
+            Qualification: jobData.qualifications,
+            Benenfit: jobData.benefits,
+            workingHours: jobData.workingHours,
+            location: jobData.location,
+            JobType: jobData.employmentType,
+            minSalary: Number(jobData.minSalary),
+            maxSalary: Number(jobData.maxSalary),
+            published: false,
+            companyId: companyId,
+            categories: "", // Add category if you have one
+        };
+        const res = await createJobAPI(payload);
+        if (res.success) {
+            setShowSavePopup(true);
+            setTimeout(()=>{ setShowSavePopup(false); },3000);
+        }
     };
 
 
@@ -51,14 +66,29 @@ function CompanyJobPostForm() {
     };
 
 
-    const handlePublishSuccess = (e) => {
+    const handlePublishSuccess = async (e) => {
         e.preventDefault();
-        console.log(jobData);
+        const payload = {
+            title: jobData.jobTitle,
+            description: jobData.jobDescription,
+            responsibility: jobData.responsibilities,
+            qualification: jobData.qualifications,
+            benefit: jobData.benefits,
+            workingHours: jobData.workingHours,
+            location: jobData.location,
+            jobType: jobData.employmentType,
+            minSalary: Number(jobData.minSalary),
+            maxSalary: Number(jobData.maxSalary),
+            published: true,
+            companyId: companyId,
+            categories: "", // Add category if you have one
+        };
+        const res = await createJobAPI(payload);
         setShowConfirmPublishPopup(false);
-        setShowPublishSuccessPopup(true);
-        setTimeout(()=>{
-            setShowPublishSuccessPopup(false);
-        },3000);
+        if (res.success) {
+            setShowPublishSuccessPopup(true);
+            setTimeout(()=>{ setShowPublishSuccessPopup(false); },3000);
+        }
     };
 
 

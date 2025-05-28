@@ -62,23 +62,21 @@ model Company {
 
 
 model Job {
-  id            Int           @id @default(autoincrement())
-  title         String
-  Desciption    String?
-  Responbility  String?
-  Qualification String?
-  Benenfit      String?
-  workingHours  String?
-  JobType       String
-  minSalary     Int
-  maxSalary     Int
-  published     Boolean       @default(false)
-  CompanyId     Int
-  company       Company       @relation(fields: [CompanyId], references: [id])
-  ApplicantList Application[]
-  categories    Category[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id                 Int              @id @default(autoincrement())
+  title              String
+  desciption         String?
+  responbility       String?
+  qualification      String?
+  benenfit           String?
+  workingHours       String?
+  jobType            String
+  minSalary          Int
+  maxSalary          Int
+  published          Boolean          @default(false)
+  companyId          Int         
+  company            Company          @relation(fields: [companyId], references: [id])
+  applications       Application[]          
+  categories         String
 }
 
 model Application {
@@ -90,8 +88,3 @@ model Application {
   appliedAt DateTime @default(now())
 }
 
-model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  Job  Job[]
-}

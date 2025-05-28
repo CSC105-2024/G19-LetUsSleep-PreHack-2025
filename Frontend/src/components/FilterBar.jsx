@@ -9,12 +9,6 @@ export default function FilterBar() {
     projectWork: true
   });
   
-  const [experienceLevels, setExperienceLevels] = useState({
-    beginner: true,
-    intermediate: true,
-    expert: true
-  });
-  
   const [salaryRange, setSalaryRange] = useState({
     min:0,
     max:1000000000
@@ -68,7 +62,6 @@ export default function FilterBar() {
   const applyFilters = () => {
     const filters = {
       jobTypes,
-      experienceLevels,
       salaryRange,
       jobCategory
     };
@@ -88,11 +81,6 @@ export default function FilterBar() {
       partTime: true,
       internship: true,
       projectWork: true
-    });
-    setExperienceLevels({
-      beginner: true,
-      intermediate: true,
-      expert: true
     });
     setSalaryRange({
       min: 0,
@@ -156,45 +144,7 @@ export default function FilterBar() {
         </div>
       </div>
       
-      {/* Experience Level Filter */}
-      <div className="mb-4">
-        <h3 className="font-semibold mb-2">Job Experience Level</h3>
-        <div className="space-y-2">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="beginner"
-              name="beginner"
-              checked={experienceLevels.beginner}
-              onChange={handleExperienceChange}
-              className="mr-2"
-            />
-            <label htmlFor="beginner">Beginner</label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="intermediate"
-              name="intermediate"
-              checked={experienceLevels.intermediate}
-              onChange={handleExperienceChange}
-              className="mr-2"
-            />
-            <label htmlFor="intermediate">Intermediate</label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="expert"
-              name="expert"
-              checked={experienceLevels.expert}
-              onChange={handleExperienceChange}
-              className="mr-2"
-            />
-            <label htmlFor="expert">Expert</label>
-          </div>
-        </div>
-      </div>
+
       
       {/* Salary Range Filter */}
       <div className="mb-4">
