@@ -1,203 +1,260 @@
-import React, {useState, useEffect} from "react";
-import {NavLink, Outlet, useNavigate} from "react-router-dom";
-import LoginOverlay from "./LoginOverlay.jsx";
+import React, { useState } from 'react'
+import { NavLink } from "react-router-dom";
 
-const NavBar = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [showLogin, setShowLogin] = useState(false);
-    const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const navigate = useNavigate();
+const Navbar = (signin) => {
+  const[menu,setmenu] = useState();
+  const[showLogout,setshowLogout] = useState();
+  const[login,setlogin] = useState(true);
+  const[company,setcompany] = useState(false);
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        const storedToken = localStorage.getItem('authToken');
+  const toggleAccount = () =>{
+    if(!menu){
+      setmenu(true);
+    }
+    if(menu){
+      setmenu(false)
+    }
+  }
 
-        if (storedUser && storedToken) {
-            setUser(JSON.parse(storedUser));
-            setIsAuthenticated(true);
+  const ConfirmLogout = () => {
+      const confirm = prompt("Confirm LogOut?");
+      if(confirm === null || confirm != null){
+        //window.location.href = '/';
+        setlogin(false)
+        setmenu(false)
+        
+      }
+  }
+
+  return (
+    <div className='flex flex-row gap-4 bg-black h-15 text-white'>
+      <div className='hidden md:flex flex-row gap-4 bg-black h-15 text-white'>
+        <NavLink to = '/' >
+        <img src='public/icons/LOGO.png'
+        className='h-13 w-20 object-cover m-1 ml-3'
+        /></NavLink>
+        { !company && login ? (
+        <NavLink
+          to="/SearchJob"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto " :
+          "hover:text-dpink duration-300 my-auto"
         }
-    }, []);
+        >
+          Find job
+        </NavLink>) : (<></>)
+        }
 
-    const handleLogin = (data) => {
-        // data contains { user, token } from the API response
-        setUser(data.user);
-        setIsAuthenticated(true);
-        setShowLogin(false);
-        setMenuOpen(false);
+        { !login ? (
+        <NavLink
+          to="/SearchJob"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          Find job
+        </NavLink>) : (<></>)
+        }
 
-        // Optional: navigate to dashboard or stay on current page
-        // navigate("/dashboard");
-        console.log('User logged in:', data.user);
-    };
+        { company && login ? (
+        <NavLink
+          to="/CDashboard"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          Create post
+        </NavLink>) : (<></>)
+        }
 
-    const handleLogout = () => {
-        setUser(null);
-        setIsAuthenticated(false);
-        localStorage.removeItem('user');
-        localStorage.removeItem('authToken');
-        setMenuOpen(false);
-        navigate("/");
-    };
+        { !login ? (
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          Create post
+        </NavLink>) : (<></>)
+        }
 
-    const handleProfileClick = () => {
-        setMenuOpen(false);
-        navigate("/profile"); // or wherever your profile page is
-    };
+        { !company && login ? (
+        <NavLink
+          to='/'
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+        <div className='text-center text-xs'>Recommand</div>
+        <div className='text-center text-xs'>company</div>
+        </NavLink>) : (<></>)
+        }
 
-    return (
-        <>
-            <nav className="bg-pri text-white fixed top-0 left-0 right-0 w-full z-50">
-                <div className="flex items-center h-[72px] px-6 justify-between">
-                    <NavLink to="/" className="flex items-center gap-2">
-                        <img
-                            src="icons/fullLogo.png"
-                            alt="fullLogo"
-                            className="h-6"
-                        />
-                    </NavLink>
+        { !login ? (
+        <NavLink
+          to='/'
+          className={({ isActive }) =>
+          isActive ? "text-dpink py-3" :
+          "hover:text-dpink duration-300 py-3"
+        }
+        >
+        <div className='text-center text-xs'>Recommand</div>
+        <div className='text-center text-xs'>company</div>
+        </NavLink>) : (<></>)
+        }
+      </div>
 
-                    <div className="hidden md:flex items-center gap-6">
-                        <NavLink
-                            to="/"
-                            className={({isActive}) =>
-                                isActive ? "text-yellow-300" : "hover:text-yellow-600"
-                            }
-                        >
-                            Home
-                        </NavLink>
-                        <NavLink
-                            to="/FindDoctor"
-                            className={({isActive}) =>
-                                isActive ? "text-yellow-300" : "hover:text-yellow-600"
-                            }
-                        >
-                            Appointment
-                        </NavLink>
+      <div className='md:hidden  flex flex-row gap-4 bg-black h-15 text-white'>
+        <NavLink to='/'>
+        <img src='public/icons/LOGO.png'
+        className='h-10 mt-2.5 object-cover ml-2'
+        /></NavLink>
+        { !company && login ? (
+        <NavLink
+          to="/SearchJob"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto " :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          <img src='public/icons/SEARCHICON.png'
+          className='h-10 w-10 object-cover'
+          />
+        </NavLink>) : (<></>)
+        }
 
-                        {/* Conditional Auth Buttons */}
-                        {isAuthenticated ? (
-                            <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm">
-                                        Welcome, {user?.firstName || 'User'}
-                                    </span>
-                                    {user?.photo && (
-                                        <img
-                                            src={user.photo}
-                                            alt="Profile"
-                                            className="h-8 w-8 rounded-full object-cover cursor-pointer"
-                                            onClick={handleProfileClick}
-                                        />
-                                    )}
-                                </div>
-                                <button
-                                    onClick={handleLogout}
-                                    className="border-2 border-red-500 text-white px-4 py-1 rounded-lg text-sm font-medium hover:bg-red-500 transition-all"
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        ) : (
-                            <>
-                                <div
-                                    className="bg-yellow border-2 border-yellow text-white px-4 py-1 rounded-lg text-sm font-medium hover:bg-yellow transition-all">
-                                    <button onClick={() => setShowLogin(true)}>Login</button>
-                                </div>
-                                <NavLink
-                                    to="/Register"
-                                    className="border-2 border-yellow text-white px-4 py-1 rounded-lg text-sm font-medium hover:bg-white hover:text-[#0D47A1] transition-all"
-                                >
-                                    Register
-                                </NavLink>
-                            </>
-                        )}
-                    </div>
+        { !login ? (
+        <NavLink
+          to="/SearchJob"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          <img src='public/icons/SEARCHICON.png'
+          className='h-10 w-10 object-cover'
+          />
+        </NavLink>) : (<></>)
+        }
 
-                    <div className="flex items-center gap-2 md:hidden">
-                        {isAuthenticated && user?.photo && (
-                            <img
-                                src={user.photo}
-                                alt="Profile"
-                                className="h-8 w-8 rounded-full object-cover cursor-pointer"
-                                onClick={handleProfileClick}
-                            />
-                        )}
-                        <div onClick={() => setMenuOpen(!menuOpen)}>
-                            <span className="text-2xl cursor-pointer">{menuOpen ? "✕" : "☰"}</span>
-                        </div>
-                    </div>
-                </div>
+        { company && login ? (
+        <NavLink
+          to="/CDashboard"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          <img src='public/icons/CREATEICON.png'
+          className='h-10 w-10 object-cover'
+          />
+        </NavLink>) : (<></>)
+        }
 
-                {menuOpen && (
-                    <div className="md:hidden bg-white text-black px-4 py-2 space-y-2 border-t">
-                        <NavLink
-                            to="/"
-                            className="block hover:text-blue-600"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Home
-                        </NavLink>
-                        <NavLink
-                            to="/FindDoctor"
-                            className="block hover:text-blue-600"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Appointment
-                        </NavLink>
+        { !login ? (
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          <img src='public/icons/CREATEICON.png'
+          className='h-10 w-10 object-cover'
+          />
+        </NavLink>) : (<></>)
+        }
+        { !company && login ? (
+        <NavLink
+          to='/'
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto " :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          <img src='public/icons/RECOM.png'
+          className='h-10 w-10 object-cover'
+          />
+        </NavLink>) : (<></>)
+        }
 
-                        {isAuthenticated ? (
-                            <>
-                                <div className="block py-2">
-                                    <span className="text-sm text-gray-600">
-                                        Welcome, {user?.firstName || 'User'}
-                                    </span>
-                                </div>
-                                <button
-                                    onClick={handleProfileClick}
-                                    className="block w-full text-left hover:text-blue-600 py-1"
-                                >
-                                    Profile
-                                </button>
-                                <button
-                                    onClick={handleLogout}
-                                    className="block w-full text-left hover:text-red-600 py-1"
-                                >
-                                    Logout
-                                </button>
-                            </>
-                        ) : (
-                            <>
-                                <div
-                                    className="justify-center bg-yellow border-2 border-yellow text-white px-4 py-1 rounded-lg text-sm font-medium hover:bg-yellow transition-all">
-                                    <button onClick={() => setShowLogin(true)}>Login</button>
-                                </div>
-                                <NavLink
-                                    to="/Register"
-                                    className="block hover:text-blue-600"
-                                    onClick={() => setMenuOpen(false)}
-                                >
-                                    Register
-                                </NavLink>
-                            </>
-                        )}
-                    </div>
-                )}
-            </nav>
+        { !login ? (
+        <NavLink
+          to='/'
+          className={({ isActive }) =>
+          isActive ? "text-dpink my-auto" :
+          "hover:text-dpink duration-300 my-auto"
+        }
+        >
+          <img src='public/icons/RECOM.png'
+          className='h-10 w-10 object-cover'
+          />
+        </NavLink>) : (<></>)
+        }
+        
+      </div>
 
-            {/* Login Overlay */}
-            {showLogin && (
-                <LoginOverlay
-                    onClose={() => setShowLogin(false)}
-                    onLogin={handleLogin}
-                />
-            )}
+      <div className='ml-auto mr-2'>
+        {/*account manage*/}
+        
+        {!login ? (<div className='flex flex-row gap-2'>
+          <NavLink
+          to='/login'
+          className="text-xs md:text-lg my-1 border-1 rounded-lg h-13 px-2 py-4 md:py-3 "
+          >
+            LOGIN
+          </NavLink>
+          <NavLink
+          to='/register'
+          className="text-xs md:text-lg my-1 border-1 rounded-lg h-13 px-2 py-4 md:py-3"
+          >
+            REGISTER
+          </NavLink>
+        </div>) 
+        : (<button className='flex flex-col'
+        onClick={toggleAccount}>
+        <div className= 'flex flex-row mt-1 border-1'
+        >
+        <img 
+        src='public\logo(for test).jpg'
+        className='h-10 w-12 object-cover rounded-full m-1'/>
+        <button className=' my-auto truncate w-25 md:w-50 mx-2'
+        >name1234535647325</button>
+        </div>
+        
+        </button>
+        )
+        }
+        {menu ? ( 
+          <div className= 'flex flex-col bg-black w-auto border-1 '>
+            {!company ? (<NavLink
+          to='/UserDetail'
+          className=" border-1 py-2 px-3"
+          >
+            Manage Profile
+          </NavLink>):
+          (<NavLink
+          to='/CDashboard'
+          className="border-1 py-2 px-3"
+          >
+            Manage Profile
+          </NavLink>)}
+          <div
+          
+          className="border-1 border-white py-2 px-3 text-dpink"
+          >
+          <button onClick={ConfirmLogout}>Logout</button>
+          </div>
+          </div>):
+          (<></>)}
+      </div>
+      
+    </div>
+  )
+}
 
-            <div className="pt-[72px]">
-                <Outlet/>
-            </div>
-        </>
-    );
-};
-
-export default NavBar;
+export default Navbar
