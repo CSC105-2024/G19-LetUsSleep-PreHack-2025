@@ -54,22 +54,23 @@ const jobCategories = [
 
        const handleSave = async (e) => {
         e.preventDefault();
-       const payload = {
-  title: jobData.jobTitle,
-  Desciption: jobData.jobDescription,      // capital D
-  Responbility: jobData.responsibilities,  // capital R
-  Qualification: jobData.qualifications,   // capital Q
-  Benenfit: jobData.benefits,              // capital B
-  workingHours: jobData.workingHours,
-  location: jobData.location,
-  JobType: jobData.employmentType,         // capital J
-  minSalary: Number(jobData.minSalary),
-  maxSalary: Number(jobData.maxSalary),
-  published: false, // or true if publishing
-  CompanyId: companyId,                    // capital C
-//   categories: "", // or your categories value
-};
-        const res = await createJobAPI(payload);
+        setJobData({
+            title: jobData.jobTitle,
+            Desciption: jobData.jobDescription,
+            Responsibility: jobData.responsibilities,
+            Qualification: jobData.qualifications,
+            Benenfit: jobData.benefits,
+            workingHours: jobData.workingHours,
+            location: jobData.location,
+            JobType: jobData.employmentType,
+            minSalary: Number(jobData.minSalary),
+            maxSalary: Number(jobData.maxSalary),
+            published: false,
+            companyId: companyId,
+            categories: "", // Add category if you have one
+        });
+      
+        const res = await createJobAPI(jobData);
         if (res.success) {
             setShowSavePopup(true);
             setTimeout(()=>{ setShowSavePopup(false); },3000);
