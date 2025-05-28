@@ -12,6 +12,18 @@ function CompanyJobPostForm() {
     const [showPublishSuccessPopup, setShowPublishSuccessPopup] = useState(false);
 
 
+const jobCategories = [
+    'Engineering',
+    'Marketing',
+    'Design',
+    'Finance',
+    'Sales',
+    'Human Resources',
+    'Customer Support',
+    'Product Management',
+    'Data Science',
+    'Research'
+  ];
    
     const [jobData, setJobData] = useState({
         jobTitle: '',
@@ -24,7 +36,13 @@ function CompanyJobPostForm() {
         employmentType: '',
         minSalary: '',
         maxSalary: '',
+        categories : ''
     });
+
+    
+    const handleCategoryChange = (e) => {
+    setJobData({categories : e.target.value});
+  };
 
 
     // handle form change
@@ -36,21 +54,21 @@ function CompanyJobPostForm() {
 
        const handleSave = async (e) => {
         e.preventDefault();
-        const payload = {
-            title: jobData.jobTitle,
-            Desciption: jobData.jobDescription,
-            Responsibility: jobData.responsibilities,
-            Qualification: jobData.qualifications,
-            Benenfit: jobData.benefits,
-            workingHours: jobData.workingHours,
-            location: jobData.location,
-            JobType: jobData.employmentType,
-            minSalary: Number(jobData.minSalary),
-            maxSalary: Number(jobData.maxSalary),
-            published: false,
-            companyId: companyId,
-            categories: "", // Add category if you have one
-        };
+       const payload = {
+  title: jobData.jobTitle,
+  Desciption: jobData.jobDescription,      // capital D
+  Responbility: jobData.responsibilities,  // capital R
+  Qualification: jobData.qualifications,   // capital Q
+  Benenfit: jobData.benefits,              // capital B
+  workingHours: jobData.workingHours,
+  location: jobData.location,
+  JobType: jobData.employmentType,         // capital J
+  minSalary: Number(jobData.minSalary),
+  maxSalary: Number(jobData.maxSalary),
+  published: false, // or true if publishing
+  CompanyId: companyId,                    // capital C
+//   categories: "", // or your categories value
+};
         const res = await createJobAPI(payload);
         if (res.success) {
             setShowSavePopup(true);
@@ -66,31 +84,30 @@ function CompanyJobPostForm() {
     };
 
 
-    const handlePublishSuccess = async (e) => {
-        e.preventDefault();
-        const payload = {
-            title: jobData.jobTitle,
-            description: jobData.jobDescription,
-            responsibility: jobData.responsibilities,
-            qualification: jobData.qualifications,
-            benefit: jobData.benefits,
-            workingHours: jobData.workingHours,
-            location: jobData.location,
-            jobType: jobData.employmentType,
-            minSalary: Number(jobData.minSalary),
-            maxSalary: Number(jobData.maxSalary),
-            published: true,
-            companyId: companyId,
-            categories: "", // Add category if you have one
-        };
-        const res = await createJobAPI(payload);
-        setShowConfirmPublishPopup(false);
-        if (res.success) {
-            setShowPublishSuccessPopup(true);
-            setTimeout(()=>{ setShowPublishSuccessPopup(false); },3000);
-        }
+   const handlePublishSuccess = async (e) => {
+    e.preventDefault();
+    const payload = {
+        title: jobData.jobTitle,
+        Desciption: jobData.jobDescription,      // match schema
+        Responbility: jobData.responsibilities,  // match schema
+        Qualification: jobData.qualifications,   // match schema
+        Benenfit: jobData.benefits,              // match schema
+        workingHours: jobData.workingHours,
+        location: jobData.location,
+        JobType: jobData.employmentType,         // match schema
+        minSalary: Number(jobData.minSalary),
+        maxSalary: Number(jobData.maxSalary),
+        published: true,
+        CompanyId: companyId,                    // Capital C
+        categories: "", // or your categories value
     };
-
+    const res = await createJobAPI(payload);
+    setShowConfirmPublishPopup(false);
+    if (res.success) {
+        setShowPublishSuccessPopup(true);
+        setTimeout(()=>{ setShowPublishSuccessPopup(false); },3000);
+    }
+};
 
   return (
     // background
@@ -237,14 +254,33 @@ function CompanyJobPostForm() {
                                 value={jobData.employmentType}
                                 onChange={handleChange}
                                 className="p-2 border border-gray-300 w-full rounded-2xl bg-white">
-                                <option value="Full-Time">Full-Time</option>
-                                <option value="Part-Time">Part-Time</option>
-                                <option value="Contract">Contract</option>
+                                <option value="Full Time">Full Time</option>
+                                <option value="Part Time">Part Time</option>
                                 <option value="Internship">Internship</option>
-                                <option value="Freelancer">Freelancer</option>
+                                <option value="ProjectWork">ProjectWork</option>
                             </select>
                         </div>
                     </div>
+
+                    <div className="flex flex-col relative">
+                        <label className="mb-[9px]">Job Categories</label>
+
+                    </div>
+                    
+                    <div className="mt-5">
+        <h3 className="font-semibold mb-2">Job Category</h3>
+        <select
+          id="jobCategory"
+          value={jobData}
+          onChange={handleCategoryChange}
+          className="w-full p-2 border-1 border-gray-300 rounded-2xl bg-white"
+        >
+          <option value="">Select Category</option>
+          {jobCategories.map(category => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
+      </div>
 
 
                     {/* Salary Range */}

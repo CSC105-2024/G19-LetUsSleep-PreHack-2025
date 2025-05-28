@@ -76,7 +76,7 @@ model Job {
   CompanyId     Int
   company       Company       @relation(fields: [CompanyId], references: [id])
   ApplicantList Application[]
-  categories    Category[]
+  categories    String
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }
@@ -88,10 +88,4 @@ model Application {
   jobId     Int      @unique
   job       Job      @relation(fields: [jobId], references: [id])
   appliedAt DateTime @default(now())
-}
-
-model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  Job  Job[]
 }

@@ -1,36 +1,37 @@
 import { error } from "console";
 import type { Job } from "../generated/prisma/index.js";
 import { db } from "../index.ts";
-
 type JobType = {
-  id:number,            
+  id: number,
   title: string,
-  description?: string,
-  responsibility?: string,
-  qualification?: string,
-  benefit?: string,
+  Desciption?: string,      // capital D, matches schema
+  Responbility?: string,    // capital R, matches schema
+  Qualification?: string,   // capital Q, matches schema
+  Benenfit?: string,        // capital B, matches schema
   workingHours?: string,
-  jobType: string,
+  location?: string,
+  JobType: string,          // capital J, matches schema
   minSalary: number,
   maxSalary: number,
-  published: boolean,        
-  companyId: number,
-  categories: string      
+  published: boolean,
+  CompanyId: number,        // capital C, matches schema
+  categ
 }
 
 type CreateJobInput = {
-  title: string;
-  companyId: number;
-  jobType: string;
-  minSalary: number;
-  maxSalary: number;
-  categories: string;
-  description?: string;
-  responsibility?: string;
-  qualification?: string;
-  benefit?: string;
-  workingHours?: string;
-  published?: boolean;
+  title: string,
+  Desciption?: string,
+  Responbility?: string,
+  Qualification?: string,
+  Benenfit?: string,
+  workingHours?: string,
+  location?: string,
+  JobType: string,
+  minSalary: number,
+  maxSalary: number,
+  published?: boolean,
+  CompanyId: number,
+  // categories: string
 }
 
 type JobTypeFilter = {
@@ -54,30 +55,32 @@ type JobFilters = {
 export const JobModel = {
 
   createJob : async (jobData: CreateJobInput) => {
+    console.log("Job Data:", jobData);
      try {
       const company = await db.company.findUnique({
-      where: { id: jobData.companyId }
+      where: { id: jobData.CompanyId }
     });
     
     if (!company) {
-      throw new Error(`Company with ID ${jobData.companyId} not found`);
+      throw new Error(`Company with ID ${jobData.CompanyId} not found`);
     }
-      const job = await db.job.create({
-  data: {
-    title: jobData.title,
-    Desciption: jobData.description,         // match schema
-    Responbility: jobData.responsibility,    // match schema
-    Qualification: jobData.qualification,    // match schema
-    Benenfit: jobData.benefit,               // match schema
-    workingHours: jobData.workingHours,
-    JobType: jobData.jobType,                // match schema
-    minSalary: jobData.minSalary,
-    maxSalary: jobData.maxSalary,
-    published: jobData.published,
-    CompanyId: jobData.companyId,            // match schema
-    categories: jobData.categories,          // if this is a string[] or relation, adjust accordingly
-  }
-});
+ const job = await db.job.create({
+        data: {
+          title: jobData.title,
+          Desciption: jobData.Desciption,
+          Responbility: jobData.Responbility,
+          Qualification: jobData.Qualification,
+          Benenfit: jobData.Benenfit,
+          workingHours: jobData.workingHours,
+          location: jobData.location,
+          JobType: jobData.JobType,
+          minSalary: jobData.minSalary,
+          maxSalary: jobData.maxSalary,
+          published: jobData.published,
+          CompanyId: jobData.CompanyId,
+          // categories: jobData.categories,
+        }
+      });
     return job;
     } 
     catch (error) {
@@ -153,22 +156,23 @@ export const JobModel = {
     )}
   },
 
-  updateJob: async (id: number, jobData:JobType) => {
+updateJob: async (id: number, jobData: any) => {
     return await db.job.update({
-      where: { id : id },
-      data : {
-        title : jobData.title,
-        companyId: jobData.companyId,
-        jobType: jobData.jobType,
+      where: { id: id },
+      data: {
+        title: jobData.title,
+        Desciption: jobData.Desciption,
+        Responbility: jobData.Responbility,
+        Qualification: jobData.Qualification,
+        Benenfit: jobData.Benenfit,
+        workingHours: jobData.workingHours,
+        location: jobData.location,
+        JobType: jobData.JobType,
         minSalary: jobData.minSalary,
         maxSalary: jobData.maxSalary,
-        categories: jobData.categories,
-        desciption: jobData.description,
-        responbility: jobData.responsibility,
-        qualification: jobData.qualification,
-        benenfit: jobData.benefit,
-        workingHours: jobData.workingHours,
-        published: jobData.published
+        published: jobData.published,
+        CompanyId: jobData.CompanyId,
+        // categories: jobData.categories,
       }
     });
   },
