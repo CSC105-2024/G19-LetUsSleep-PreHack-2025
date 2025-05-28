@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { getCompanyAPIbyID, updateCompanyAPI } from '../api/company';
 
 
 function EditCoProfile() {
+    const companyId = 1;
     const navigate = useNavigate();
     const [coData, setCoData] = useState({
         companyName: "",
@@ -17,7 +19,28 @@ function EditCoProfile() {
         phoneContact: "",
         website: "",
     })
-
+        useEffect(() => {
+        const fetchData = async () => {
+            const res = await getCompanyAPIbyID(companyId);
+            console.log('Company data:', res);
+            if (res.success && res.data) {
+                setCoData({
+                    companyName: res.data.companyName || "",
+                    companyOverview: res.data.overview || "",
+                    industry: res.data.industry || "",
+                    companySize: res.data.companySize || "",
+                    yearEstablished: res.data.yearEstablished || "",
+                    generalBenefits: res.data.generalBenefits || "",
+                    socialMedia: res.data.socialMedia || "",
+                    workingHours: res.data.workingHours || "",
+                    location: res.data.location || "",
+                    phoneContact: res.data.phoneNumber || "",
+                    website: res.data.websiteUrl || "",
+                });
+            }
+        };
+        fetchData();
+    }, [companyId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,15 +48,33 @@ function EditCoProfile() {
     };
 
 
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
         // ป้องกันการ reload หน้าจอ
         e.preventDefault();
+        const res = await updateCompanyAPI(companyId, {
+            companyName: coData.companyName,
+            overview: coData.companyOverview,
+            industry: coData.industry,
+            companySize: coData.companySize,
+            yearEstablished: coData.yearEstablished,
+            generalBenefits: coData.generalBenefits,
+            socialMedia: coData.socialMedia,
+            workingHours: coData.workingHours,
+            location: coData.location,
+            phoneNumber: coData.phoneContact,
+            websiteUrl: coData.website,
+        });
+        if (res.success) {
+            alert("Profile updated!");
+            // Optionally navigate or show a popup
+        }
         console.log('Saving data:', coData); // ส่งไป backend หรือเก็บใน local ก็ได้
     };
 
 
-    const handlePublish = (e) => {
+    const handlePublish = async (e) => {
         e.preventDefault();
+        await handleSave(e);
         console.log(coData); // ส่งไป backend หรือเก็บใน local ก็ได้
     };
    
@@ -46,18 +87,18 @@ function EditCoProfile() {
         <div className='py-[106px] px-[50px] sm:px-[85px] '>
 
 
-            {/* Upload Picture */}
+            {/* Upload Picture
             <div>
               <img src="" alt="" />
-            </div>
+            </div> */}
 
 
             {/* Box Title + bin icon */}
             <div className='flex flex-row sm:flex-col justify-center items-start gap-2 pb-[30px]'>
-                <div>
+                {/* <div>
                   {/* Upload Logo -continue*/}
-                  <img src="" alt="" />
-                </div>
+                  {/* <img src="" alt="" />
+                </div> */} */
                 <h1 className='font-bold'>Company Profile</h1>
                 <div>
                     {/* Check again Edit icon*/}
@@ -295,3 +336,18 @@ function EditCoProfile() {
 
 
 export default EditCoProfile
+
+
+    // return (
+    //     <div className='bg-lgray'>
+    //         <div className='py-[106px] px-[50px] sm:px-[85px] '>
+    //             {/* ...existing form code... */}
+    //             <form className='flex flex-col sm:gap-[123px] sm:flex-row sm:relative'>
+    //                 {/* ...existing form fields... */}
+    //                 <div className='flex justify-end pt-[153px] gap-2 '>
+    //                     <button onClick={handleSave} className="custom-btn btn-dpink btn-dpink:hover" type='submit'>Save</button>
+    //                     <button onClick={handlePublish} className="custom-btn btn-black btn-black:hover" type='submit'>Publish</button>
+    //                 </div>
+    //             </form>
+    //         </div>
+    //     </div>
