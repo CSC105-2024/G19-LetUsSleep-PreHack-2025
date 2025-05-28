@@ -43,22 +43,23 @@ model User {
 }
 
 model Company {
-  id          Int      @id @default(autoincrement())
-  Name        String // Maps to companyName from frontend
-  Overview    String?
-  Industry    String? // Maps to industry from frontend (note: typo in original)
-  CompanySize String? // Maps to companySize from frontend
-  YearEst     Int?
-  GeneralBe   String?
-  location    String // Maps to location from frontend
-  Telcontact  String? // Maps to phoneNumber from frontend
-  Email       String   @unique
-  WebsiteURL  String?
-  password    String
-  Job         Job[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  name          String
+  overview      String?
+  industry      String?
+  companySize   String?
+  yearEst       Int?
+  generalBe     String?
+  location      String
+  contactPhone  String?
+  email         String   @unique
+  websiteURL    String?
+  password      String
+  jobs          Job[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
+
 
 model Job {
   id            Int           @id @default(autoincrement())

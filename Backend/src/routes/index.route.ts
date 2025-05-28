@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from 'hono/cors';
 import authRoutes from './auth.routes.js';
+import { companyRouter } from "./company.routes.ts";
 // Import other route modules here as needed
 // import userRoutes from './user.routes.js';
 // import companyRoutes from './company.routes.js';
@@ -18,6 +19,7 @@ mainRouter.use('/*', cors({
 
 // Mount authentication routes
 mainRouter.route('/auth', authRoutes);
+mainRouter.route("/company", companyRouter);
 
 // Mount other routes here
 // mainRouter.route('/api/users', userRoutes);

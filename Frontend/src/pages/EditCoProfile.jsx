@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+
 function EditCoProfile() {
     const navigate = useNavigate();
     const [coData, setCoData] = useState({
@@ -17,10 +18,12 @@ function EditCoProfile() {
         website: "",
     })
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCoData((prev) => ({...prev, [name]: value,}));
     };
+
 
     const handleSave = (e) => {
         // ป้องกันการ reload หน้าจอ
@@ -28,22 +31,26 @@ function EditCoProfile() {
         console.log('Saving data:', coData); // ส่งไป backend หรือเก็บใน local ก็ได้
     };
 
+
     const handlePublish = (e) => {
         e.preventDefault();
         console.log(coData); // ส่งไป backend หรือเก็บใน local ก็ได้
     };
-    
+   
   return (
-    // background 
+    // background
     <div className='bg-lgray'>
+
 
         {/* Inside */}
         <div className='py-[106px] px-[50px] sm:px-[85px] '>
+
 
             {/* Upload Picture */}
             <div>
               <img src="" alt="" />
             </div>
+
 
             {/* Box Title + bin icon */}
             <div className='flex flex-row sm:flex-col justify-center items-start gap-2 pb-[30px]'>
@@ -56,26 +63,29 @@ function EditCoProfile() {
                     {/* Check again Edit icon*/}
                 </div>
             </div>
-            
+           
             {/* Form Field */}
             <form className='flex flex-col sm:gap-[123px] sm:flex-row sm:relative'>
+
 
                 {/* Desktop left part*/}
                 <div className='w-full sm:w-1/2 sm:min-w-0'>
 
+
                     {/* Company Name */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Edit Company Name</label>
-                            <input 
-                            type="text" 
+                            <input
+                            type="text"
                             name="companyName"
                             value={coData.companyName}
                             onChange={handleChange}
-                            placeholder="e.g., MACloudTech" 
+                            placeholder="e.g., MACloudTech"
                             className='custom-input overflow-hidden'
                             required
                             />
                     </div>
+
 
                     {/* Company Overview */}
                     <div className='flex flex-col pb-[32px]'>
@@ -84,14 +94,15 @@ function EditCoProfile() {
                             name="companyOverview"
                             value={coData.companyOverview}
                             onChange={handleChange}
-                            placeholder="Briefly describe your company’s background and goals" 
+                            placeholder="Briefly describe your company’s background and goals"
                             className='custom-input'
                             rows="5"
                         />
                     </div>
-                    
+                   
                     {/* Industry + size */}
                     <div className='flex flex-row w-full gap-[9px]'>
+
 
                         {/* Industry */}
                         <div className="w-1/2 relative flex flex-col">
@@ -121,9 +132,11 @@ function EditCoProfile() {
                                     <option value="Media / Entertainment">Media / Entertainment</option>
                                     <option value="Government / NGO">Government / NGO</option>
 
+
                               </select>
                             </div>
                         </div>
+
 
                         {/* size */}
                         <div className="w-1/2 relative">
@@ -150,29 +163,32 @@ function EditCoProfile() {
                         </div>                      
                     </div>
 
-                        
+
+                       
+
 
                         {/* Year Established */}
                         <div className='flex flex-col pb-[32px] pt-[64px]'>
                             <label className='mb-[9px]'>Year Established</label>
-                            <input 
-                                type="number" 
+                            <input
+                                type="number"
                                 name="yearEstablished"
                                 value={coData.yearEstablished}
                                 onChange={handleChange}
-                                placeholder="e.g. 2015" 
+                                placeholder="e.g. 2015"
                                 class='custom-input overflow-hidden'
                                 required
                             />
                         </div>
 
+
                         {/* General Benefits */}
                         <div className='flex flex-col pb-[32px]'>
                             <label className='mb-[9px]'>General Benefits</label>
                             <textarea  
-                                type="text" 
+                                type="text"
                                 name="General Benefits"
-                                placeholder="e.g. Health insurance, Remote work, Training budget, Flexible hours" 
+                                placeholder="e.g. Health insurance, Remote work, Training budget, Flexible hours"
                                 value={coData.generalBenefits}
                                 onChange={handleChange}
                                 class='custom-input'
@@ -182,31 +198,33 @@ function EditCoProfile() {
                         </div>
                 </div>    
 
+
                 {/* Desktop right part*/}
                 <div className='w-full sm:w-1/2 sm:min-w-0'>
-                    
+                   
                     {/* Social Media */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Social Media</label>
                         <textarea
-                            type="text" 
+                            type="text"
                             name="socialMedia"
-                            placeholder="e.g. @pttorofficial / www.facebook.com/pttor" 
+                            placeholder="e.g. @pttorofficial / www.facebook.com/pttor"
                             value={coData.socialMedia}
                             onChange={handleChange}
                             class='custom-input'
                             rows="5"
-                            
+                           
                         />
                     </div>
+
 
                     {/* Working Hours * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Working Hours *</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             name="workingHours"
-                            placeholder="e.g. Monday – Friday, 9:00 AM – 5:30 PM" 
+                            placeholder="e.g. Monday – Friday, 9:00 AM – 5:30 PM"
                             value={coData.workingHours}
                             onChange={handleChange}
                             class='custom-input'
@@ -214,11 +232,12 @@ function EditCoProfile() {
                         />
                     </div>
 
+
                     {/* location */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>location</label>
-                        <textarea 
-                            type="text" 
+                        <textarea
+                            type="text"
                             name="location"
                             placeholder="e.g. 99 Innovation Ave, Tech City, Country"
                             value={coData.location}
@@ -229,33 +248,36 @@ function EditCoProfile() {
                         />
                     </div>
 
+
                     {/* Phone Contact */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Phone Contact</label>
-                        <textarea 
-                            type="text" 
+                        <textarea
+                            type="text"
                             name="phoneContact"
                             value={coData.phoneContact}
                             onChange={handleChange}
-                            placeholder="e.g. +1 234 567 8901" 
+                            placeholder="e.g. +1 234 567 8901"
                             class='custom-input'
                             rows={2}
                         />
                     </div>
 
+
                     {/* Website */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Website</label>
-                        <textarea 
-                            type="text" 
+                        <textarea
+                            type="text"
                             name="website"
-                            placeholder="e.g. www.MACloudTech.io" 
+                            placeholder="e.g. www.MACloudTech.io"
                             value={coData.website}
                             onChange={handleChange}
                             class='custom-input'
                             rows={2}
                         />
                     </div>
+
 
                     {/* Button */}
                     <div className='flex justify-end pt-[153px] gap-2 '>
@@ -264,10 +286,12 @@ function EditCoProfile() {
                     </div>
                 </div>
 
+
             </form>
         </div>
       </div>
   )
 }
+
 
 export default EditCoProfile

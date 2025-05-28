@@ -1,19 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 //import JobPostCard from '../components/JobPostCard'
 //import JobApplicantLists from '../components/JobApplicantLists'
 import { Link as ScrollLink } from 'react-scroll';
 import RecommendCompany from '../components/RecommendCompany';
 import { Link, useNavigate } from 'react-router-dom';
+import { getCompanyAPIbyID } from '../api/company';
+
 
 function CompanyDashboard() {
   const [isOpen, setIsOpen] = useState(false);
   // job post
-  const [isPublishing, setIsPublishing] = useState(false);
+  //const [isPublishing, setIsPublishing] = useState(false);
   const [showConfirmPublishPopup, setShowConfirmPublishPopup] = useState(false);
   const [showPublishSuccessPopup, setShowPublishSuccessPopup] = useState(false);
   // const [message, setMessage] = useState();
-  // to navigate to edit 
+  // to navigate to edit
   const navigateEditId = useNavigate();
+  const [company, setCompany] = useState(null);
   const [postJobLists, setPostJobLists] = useState([
     {
       id: 1,
@@ -40,11 +43,25 @@ function CompanyDashboard() {
       publish: false
     }
   ]);
+
   
-  // Click edit go to edit page 
+
+  useEffect(() => {
+    const fetchCompanyData = async () => {
+      const res = await getCompanyAPIbyID(1); // Replace 1 with actual company ID
+      if (res.success) {
+        setCompany(res.data);
+      }
+    };
+    fetchCompanyData();
+  }, []);
+ 
+  console.log(company);
+  // Click edit go to edit page
   const handleEdit = (id) => {
     navigateEditId(`/EditJobPost/${id}`);
   };
+
 
   //Edit: Click button change follow each id click  
   const handleClick = (id) => {
@@ -53,16 +70,17 @@ function CompanyDashboard() {
       [id]: !prev[id]
     }));
   };
-  
+ 
   const [selectedPublishId, setSelectedPublishId] = useState(null);
-  
-  // Publish 
+ 
+  // Publish
   const handlePublish = (e, id) => {
     e.preventDefault();
     // console.log(jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
     setSelectedPublishId(id);
-    setShowConfirmPublishPopup(true); 
+    setShowConfirmPublishPopup(true);
   };
+
 
   const handlePublishSuccess = (e) => {
     e.preventDefault();
@@ -73,145 +91,146 @@ function CompanyDashboard() {
       )
     );
     setShowConfirmPublishPopup(false);
-    setShowPublishSuccessPopup(true); 
+    setShowPublishSuccessPopup(true);
     setTimeout(()=>{
       setShowPublishSuccessPopup(false);
     },3000);
   };
     // Job Applicants
-    const ApplicantList = [
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 3,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 3,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 3,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 3,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 3,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 3,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
-    {
-      id: 1,
-      name: "Yossapan",
-      resume: "link",
-      mail: "yossapan.r@gmail.com"
-    },
-    {
-      id: 2,
-      name: "Bew",
-      resume: "link",
-      mail: "bew.b@gmail.com"
-    },
-    {
-      id: 10,
-      name: "Pat",
-      resume: "link",
-      mail: "pat.npc@gmail.com"
-    },
+    // const ApplicantList = [
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
+    // {
+    //   id: 1,
+    //   name: "Yossapan",
+    //   resume: "link",
+    //   mail: "yossapan.r@gmail.com"
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bew",
+    //   resume: "link",
+    //   mail: "bew.b@gmail.com"
+    // },
+    // {
+    //   id: 10,
+    //   name: "Pat",
+    //   resume: "link",
+    //   mail: "pat.npc@gmail.com"
+    // },
 
-  ]; 
+
+  // ];
   const [showApplicants, setShowApplicants] = useState(false);
   // const handleShowApplicants = (e, id) => {
   //   e.preventDefault();
-  //   setSelectedPublishId(id); 
+  //   setSelectedPublishId(id);
   // };
   // };
   return (
@@ -229,22 +248,25 @@ function CompanyDashboard() {
         </ScrollLink>
       </div>
 
+
       <div className='flex flex-col gap-[50px] sm:gap-[100px]'>
         {/* profile */}
-        <div 
+        <div
           id="section1"
           className='flex flex-col sm:flex-row items-start p-4 justify-start sm:items-center sm:gap-5 self-stretch rounded-2xl'
           style={{background: 'linear-gradient(270deg, #E60278 0%, #85124E 25%, #242124 59.62%)',}}>
 
-          {/* pic */}
+
+          {/* pic
           <div className='w-[80px] h-[80px] p-2 bg-lgray rounded-2xl flex-initial'>
             <img src="" alt="Company Logo" />
-          </div>
+          </div> */}
+
 
           {/* Name + See more */}
           <div className='h-[143px] flex flex-col justify-center text-white'>
             <div className='flex flex-row justify-start gap-2'>
-              <h1 className='font-normal text-2xl'>Company Name</h1>
+              <h1 className='font-normal text-2xl'>{company?.companyName}</h1>
               {/* edit button */}
               <Link to="/EditCoProfile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -259,8 +281,8 @@ function CompanyDashboard() {
             {isOpen && (
               <div className="relative">
                 <RecommendCompany />
-                <button 
-                  className="absolute top-2 right-2 text-white" 
+                <button
+                  className="absolute top-2 right-2 text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   ✕
@@ -270,13 +292,14 @@ function CompanyDashboard() {
           </div>
         </div>
 
+
         {/* Job Posts */}
         <div id="section2">
           <div className='flex justify-between pb-2 bg-lgray'>
             <h1 className='text-2xl font-bold'>Job posts</h1>
             <Link to="/CJobPostForm">+ Create new post</Link>
           </div>
-          
+         
           <div className='flex flex-row gap-[37px] overflow-x-auto'>
             {postJobLists.map((post) => (
               <div id="card" key={post.id} className='flex flex-col bg-white border-2 rounded-2xl px-2 py-4 sm:p-6 size-[300px] h-[360px] flex-none'>
@@ -294,7 +317,7 @@ function CompanyDashboard() {
                   <p className='line-clamp-2'>Location: {post.location}</p>
                   <p className='line-clamp-1'>Salary: {post.salary}</p>
                 </div>
-                          
+                         
                 {post.publish ? (
                   <ScrollLink to="section3">
                     <button className='custom-btn-full btn-dpink btn-dpink:hover' onClick={() => setShowApplicants(true)}>
@@ -306,7 +329,7 @@ function CompanyDashboard() {
                     publish
                   </button>
                 )}
-                                
+                               
                 {showConfirmPublishPopup && (
                   <>
                     <div className="fixed inset-0 backdrop-blur-sm bg-black/30 z-40">
@@ -314,7 +337,7 @@ function CompanyDashboard() {
                     <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black px-6 sm:px-10 py-3 sm:py-5 rounded shadow-lg z-50 flex flex-col items-center justify-center gap-5">
                       <div className='flex flex-col items-center justify-center'>
                         <p>Are you sure you want to publish</p>
-                        <p>this job post</p> 
+                        <p>this job post</p>
                       </div>
                       <div className='flex gap-2'>
                         <button className='custom-btn btn-dpink btn-dpink:hover' onClick={() => setShowConfirmPublishPopup(false)}>back</button>
@@ -323,6 +346,7 @@ function CompanyDashboard() {
                     </div>
                   </>
                 )}
+
 
                 {showPublishSuccessPopup && (
                   <>
@@ -337,26 +361,28 @@ function CompanyDashboard() {
           </div>
         </div>
 
-        
+
+       
         {/* Job Applicant Lists */}
         {showApplicants && (
           <div id="section3">
             <h1 className="text-2xl font-bold mb-4">Job Applicants</h1>
             <div>
               <div className='bg-black rounded-2xl p-2 m-2 h-full'>
-                <div className='bg-dpink grid grid-cols-12 rounded-t-2xl p-2 font-semibold text-white'> 
+                <div className='bg-dpink grid grid-cols-12 rounded-t-2xl p-2 font-semibold text-white'>
                   <h3 className='col-span-1 text-center'>ID</h3>
                   <h3 className='col-span-3'>Name</h3>
                   <h3 className='col-span-2 text-center'>Resume</h3>
                   <h3 className='col-span-6 text-center'>Contact info</h3>
                 </div>
 
+
                 <div className='overflow-y-auto h-[500px]'>
                   {ApplicantList.map((list) => (
                     <div key={list.id} className='grid grid-cols-12 py-1 bg-white overflow-x-hidden'>
                       <p className='col-span-1 text-center'>{list.id}</p>
                       <p className='col-span-3'>{list.name}</p>
-                      <p className='col-span-2 text-center'>{list.resume}</p> 
+                      <p className='col-span-2 text-center'>{list.resume}</p>
                       <p className='col-span-6 pl-18'>{list.mail}</p>
                     </div>
                   ))}
@@ -370,4 +396,6 @@ function CompanyDashboard() {
   )
 }
 
+
 export default CompanyDashboard
+

@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 // import { useNavigate } from 'react-router-dom';
 // import IsPublishPopUp from '../components/IsPublishPopUp';
 
+
 function CompanyJobPostForm() {
     //const navigate = useNavigate();
+    // const jobId = 1;
     const [showSavePopup, setShowSavePopup] = useState(false);
     const [showConfirmPublishPopup, setShowConfirmPublishPopup] = useState(false);
     const [showPublishSuccessPopup, setShowPublishSuccessPopup] = useState(false);
 
-    
+
+   
     const [jobData, setJobData] = useState({
         jobTitle: '',
         jobDescription: '',
@@ -22,11 +25,13 @@ function CompanyJobPostForm() {
         maxSalary: '',
     });
 
+
     // handle form change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setJobData((prev) => ({...prev, [name]: value,}));
     };
+
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -38,28 +43,33 @@ function CompanyJobPostForm() {
          // ส่งไป backend หรือเก็บใน local ก็ได้
     };
 
+
     const handlePublish = (e) => {
         e.preventDefault();
         // console.log(jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
-        setShowConfirmPublishPopup(true); 
+        setShowConfirmPublishPopup(true);
     };
+
 
     const handlePublishSuccess = (e) => {
         e.preventDefault();
         console.log(jobData);
         setShowConfirmPublishPopup(false);
-        setShowPublishSuccessPopup(true); 
+        setShowPublishSuccessPopup(true);
         setTimeout(()=>{
             setShowPublishSuccessPopup(false);
         },3000);
     };
 
+
   return (
-    // background 
+    // background
     <div className='bg-lgray'>
+
 
         {/* Inside */}
         <div className='py-[106px] px-[50px] sm:px-[85px] '>
+
 
             {/* Box Title + bin icon */}
             <div className='flex justify-between'>
@@ -71,20 +81,22 @@ function CompanyJobPostForm() {
                     </svg>
                 </div>
             </div>
-            
+           
             {/* Form Field */}
             <form className='flex flex-col sm:gap-[123px] sm:flex-row sm:relative'>
+
 
                 {/* Desktop left part*/}
                 <div className='w-full sm:w-1/2 sm:min-w-0'>
 
+
                     {/* job title */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px] font-semibold'>Job Title*</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             name="jobTitle"
-                            placeholder="e.g., Accounting Officer" 
+                            placeholder="e.g., Accounting Officer"
                             value={jobData.jobTitle}
                             onChange={handleChange}
                             class='custom-input overflow-hidden'
@@ -92,27 +104,28 @@ function CompanyJobPostForm() {
                         />
                     </div>
 
+
                     {/* Job Description */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Job Description</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="jobDescription"
-                            placeholder="Briefly describe the role and responsibilities of this position" 
+                            placeholder="Briefly describe the role and responsibilities of this position"
                             value={jobData.jobDescription}
                             onChange={handleChange}
                             class='custom-input'
                             rows="5"
                         />
                     </div>
-                    
+                   
                     {/* Responsibilities * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Responsibilities *</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="responsibilities"
-                            placeholder="List key responsibilities, e.g., manage payroll, file tax reports" 
+                            placeholder="List key responsibilities, e.g., manage payroll, file tax reports"
                             value={jobData.responsibilities}
                             onChange={handleChange}
                             class='custom-input'
@@ -120,14 +133,14 @@ function CompanyJobPostForm() {
                             required
                         />
                     </div>
-                    
+                   
                     {/* Qualifications * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Qualifications *</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="qualifications"
-                            placeholder="List required qualifications, e.g., Bachelor's degree, 2+ years experience" 
+                            placeholder="List required qualifications, e.g., Bachelor's degree, 2+ years experience"
                             value={jobData.qualifications}
                             onChange={handleChange}
                             class='custom-input'
@@ -136,13 +149,14 @@ function CompanyJobPostForm() {
                         />
                     </div>
 
+
                     {/* Benefits */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Benefits</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="benefits"
-                            placeholder="e.g., Health insurance, annual leave, bonus" 
+                            placeholder="e.g., Health insurance, annual leave, bonus"
                             value={jobData.benefits}
                             onChange={handleChange}
                             class='custom-input'
@@ -150,17 +164,17 @@ function CompanyJobPostForm() {
                         />
                     </div>
                 </div>
-                
+               
                 {/* Desktop right part*/}
                 <div className='w-full sm:w-1/2 sm:min-w-0'>
-                    
+                   
                     {/* Working Hours * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Working Hours *</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             name="workingHours"
-                            placeholder="e.g., Monday – Friday, 9:00AM – 6:00 PM" 
+                            placeholder="e.g., Monday – Friday, 9:00AM – 6:00 PM"
                             value={jobData.workingHours}
                             onChange={handleChange}
                             class='custom-input'
@@ -168,18 +182,20 @@ function CompanyJobPostForm() {
                         />
                     </div>
 
+
                     {/* Location * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Location *</label>
-                        <textarea 
-                            type="text" 
+                        <textarea
+                            type="text"
                             name="location"
-                            placeholder="e.g., Bangkok, Thailand" 
+                            placeholder="e.g., Bangkok, Thailand"
                             value={jobData.location}
                             onChange={handleChange}
                             class='custom-input'
                         />
                     </div>
+
 
                     {/* Employment Type */}
                     <div className="flex flex-col relative">
@@ -200,37 +216,40 @@ function CompanyJobPostForm() {
                         </div>
                     </div>
 
+
                     {/* Salary Range */}
                     <div className='gap-[9px] pt-[64px]'>
                         <label className='mb-[9px]'>Salary Range</label>
                         <div className='mt-[9px] flex justify-between'>
-                            <input 
-                                type="number" 
+                            <input
+                                type="number"
                                 name="minSalary"
-                                placeholder="e.g., 25,000" 
+                                placeholder="e.g., 25,000"
                                 value={jobData.minSalary}
                                 onChange={handleChange}
                                 class='custom-input'
                             />
                             <div className='flex items-center px-3'>-</div>
-                            <input 
-                                type="number" 
+                            <input
+                                type="number"
                                 name="maxSalary"
-                                placeholder="e.g., 35,000" 
+                                placeholder="e.g., 35,000"
                                 value={jobData.maxSalary}
                                 onChange={handleChange}
                                 className='custom-input'
                             />
                         </div>
 
+
                         {/* Button */}
-                        
+                       
                         <div className='flex justify-end pt-[153px] gap-2 '>
-                            <button onClick = {handleSave} className='custom-btn 
+                            <button onClick = {handleSave} className='custom-btn
                             btn-dpink btn-dpink:hover'>Save</button>
-                            <button onClick = {handlePublish} className='custom-btn 
+                            <button onClick = {handlePublish} className='custom-btn
                             btn-black btn-black:hover'>Publish</button>
-                        </div> 
+                        </div>
+
 
                         {showSavePopup && (
                             <>
@@ -242,13 +261,14 @@ function CompanyJobPostForm() {
                             </>
                         )}
 
+
                         {showConfirmPublishPopup && (
                             <>
                             <div className="fixed inset-0 backdrop-blur-sm bg-black/30 z-40"></div>
                             <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black px-6 sm:px-10 py-3 sm:py-5 rounded shadow-lg z-50 flex flex-col items-center justify-center gap-5">
                             <div className='flex flex-col items-center justify-center'>
                                 <p>Are you sure you want to publish</p>
-                                <p>this job post</p> 
+                                <p>this job post</p>
                             </div>
                             <div className='flex gap-2'>
                                 <button className='custom-btn btn-dpink btn-dpink:hover' onClick={() => setShowConfirmPublishPopup(false)} >back</button>
@@ -256,8 +276,9 @@ function CompanyJobPostForm() {
                             </div>
                         </div>
                             </>
-                        
+                       
                         )}
+
 
                         {showPublishSuccessPopup && (
                             <>
@@ -276,4 +297,8 @@ function CompanyJobPostForm() {
   );
 }
 
+
 export default CompanyJobPostForm
+
+
+

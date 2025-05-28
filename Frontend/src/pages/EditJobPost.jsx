@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 // ดึง data เข้ามาจาก backend มาใส่
 function EditJobPost() {
     const { id } = useParams();
@@ -18,11 +19,13 @@ function EditJobPost() {
         maxSalary: '',
     });
 
+
     // handle form change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setJobData((prev) => ({...prev, [name]: value,}));
     };
+
 
     const handleSave = (e) => {
         // ป้องกันการ reload หน้าจอ
@@ -30,37 +33,43 @@ function EditJobPost() {
         console.log('Saving data:', jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
     };
 
+
     const handlePublish = (e) => {
         e.preventDefault();
         console.log(jobData); // ส่งไป backend หรือเก็บใน local ก็ได้
     };
 
+
   return (
-    // background 
+    // background
     <div className='bg-lgray'>
+
 
         {/* Inside */}
         <div className='py-[106px] px-[50px] sm:px-[85px] '>
 
+
             {/* Box Title + bin icon */}
             <div className='flex justify-between'>
                 <h1 className='pb-[30px]'>Post Job(Draft)</h1>
-                
+               
             </div>
-            
+           
             {/* Form Field */}
             <form className='flex flex-col sm:gap-[123px] sm:flex-row sm:relative'>
+
 
                 {/* Desktop left part*/}
                 <div className='w-full sm:w-1/2 sm:min-w-0'>
 
+
                     {/* job title */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Job Title*</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             name="jobTitle"
-                            placeholder="e.g., Accounting Officer" 
+                            placeholder="e.g., Accounting Officer"
                             value={jobData.jobTitle}
                             onChange={handleChange}
                             class='custom-input overflow-hidden'
@@ -68,27 +77,28 @@ function EditJobPost() {
                         />
                     </div>
 
+
                     {/* Job Description */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Job Description</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="jobDescription"
-                            placeholder="Briefly describe the role and responsibilities of this position" 
+                            placeholder="Briefly describe the role and responsibilities of this position"
                             value={jobData.jobDescription}
                             onChange={handleChange}
                             class='custom-input'
                             rows="5"
                         />
                     </div>
-                    
+                   
                     {/* Responsibilities * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Responsibilities *</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="responsibilities"
-                            placeholder="List key responsibilities, e.g., manage payroll, file tax reports" 
+                            placeholder="List key responsibilities, e.g., manage payroll, file tax reports"
                             value={jobData.responsibilities}
                             onChange={handleChange}
                             class='custom-input'
@@ -96,14 +106,14 @@ function EditJobPost() {
                             required
                         />
                     </div>
-                    
+                   
                     {/* Qualifications * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Qualifications *</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="qualifications"
-                            placeholder="List required qualifications, e.g., Bachelor's degree, 2+ years experience" 
+                            placeholder="List required qualifications, e.g., Bachelor's degree, 2+ years experience"
                             value={jobData.qualifications}
                             onChange={handleChange}
                             class='custom-input'
@@ -112,13 +122,14 @@ function EditJobPost() {
                         />
                     </div>
 
+
                     {/* Benefits */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Benefits</label>
                         <textarea  
-                            type="text" 
+                            type="text"
                             name="benefits"
-                            placeholder="e.g., Health insurance, annual leave, bonus" 
+                            placeholder="e.g., Health insurance, annual leave, bonus"
                             value={jobData.benefits}
                             onChange={handleChange}
                             class='custom-input'
@@ -126,17 +137,17 @@ function EditJobPost() {
                         />
                     </div>
                 </div>
-                
+               
                 {/* Desktop right part*/}
                 <div className='w-full sm:w-1/2 sm:min-w-0'>
-                    
+                   
                     {/* Working Hours * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Working Hours *</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             name="workingHours"
-                            placeholder="e.g., Monday – Friday, 9:00AM – 6:00 PM" 
+                            placeholder="e.g., Monday – Friday, 9:00AM – 6:00 PM"
                             value={jobData.workingHours}
                             onChange={handleChange}
                             class='custom-input'
@@ -144,18 +155,20 @@ function EditJobPost() {
                         />
                     </div>
 
+
                     {/* Location * */}
                     <div className='flex flex-col pb-[32px]'>
                         <label className='mb-[9px]'>Location *</label>
-                        <textarea 
-                            type="text" 
+                        <textarea
+                            type="text"
                             name="location"
-                            placeholder="e.g., Bangkok, Thailand" 
+                            placeholder="e.g., Bangkok, Thailand"
                             value={jobData.location}
                             onChange={handleChange}
                             class='custom-input'
                         />
                     </div>
+
 
                     {/* Employment Type */}
                     <div className="flex flex-col relative">
@@ -176,28 +189,30 @@ function EditJobPost() {
                         </div>
                     </div>
 
+
                     {/* Salary Range */}
                     <div className='gap-[9px] pt-[64px]'>
                         <label className='mb-[9px]'>Salary Range</label>
                         <div className='mt-[9px] flex justify-between'>
-                            <input 
-                                type="number" 
+                            <input
+                                type="number"
                                 name="minSalary"
-                                placeholder="e.g., 25,000" 
+                                placeholder="e.g., 25,000"
                                 value={jobData.minSalary}
                                 onChange={handleChange}
                                 class='custom-input'
                             />
                             <div className='flex items-center px-3'>-</div>
-                            <input 
-                                type="number" 
+                            <input
+                                type="number"
                                 name="maxSalary"
-                                placeholder="e.g., 35,000" 
+                                placeholder="e.g., 35,000"
                                 value={jobData.maxSalary}
                                 onChange={handleChange}
                                 className='custom-input'
                             />
                         </div>
+
 
                         {/* Button */}
                         <div className='flex justify-end pt-[153px] gap-2 '>
@@ -209,19 +224,23 @@ function EditJobPost() {
             </form>
         </div>
     </div>
-    
+   
   );
 }
 
+
 export default EditJobPost
+
 
 // useEffect(() => {
 //   if (!id) return;
+
 
 //   fetch(`/api/items/${id}`)
 //     .then(res => res.json())
 //     .then(data => setItem(data));
 // }, [id]);
+
 
 // const handleSubmit = async () => {
 //   await fetch(`/api/items/${id}`, {
@@ -231,7 +250,9 @@ export default EditJobPost
 //   });
 // };
 
+
 {/* <h1>Editing item #{id}</h1> */}
+
 
 // | การใช้งาน                        | ตัวอย่าง                     |
 // | -------------------------------- | ---------------------------- |
@@ -239,6 +260,7 @@ export default EditJobPost
 // | ส่งข้อมูลแก้ไข                   | `fetch(... PUT /edit/${id})` |
 // | แสดงเลข id บน UI                 | `Item #{id}`                 |
 // | ใช้กับ context/validation ต่าง ๆ | `if (id === something)`      |
+
 
 {/* <button onClick={() => handleDelete}>
                     {/* Check again */}

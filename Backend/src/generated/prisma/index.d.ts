@@ -1264,11 +1264,11 @@ export namespace Prisma {
    */
 
   export type CompanyCountOutputType = {
-    Job: number
+    jobs: number
   }
 
   export type CompanyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Job?: boolean | CompanyCountOutputTypeCountJobArgs
+    jobs?: boolean | CompanyCountOutputTypeCountJobsArgs
   }
 
   // Custom InputTypes
@@ -1285,7 +1285,7 @@ export namespace Prisma {
   /**
    * CompanyCountOutputType without action
    */
-  export type CompanyCountOutputTypeCountJobArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CompanyCountOutputTypeCountJobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: JobWhereInput
   }
 
@@ -2697,26 +2697,26 @@ export namespace Prisma {
 
   export type CompanyAvgAggregateOutputType = {
     id: number | null
-    YearEst: number | null
+    yearEst: number | null
   }
 
   export type CompanySumAggregateOutputType = {
     id: number | null
-    YearEst: number | null
+    yearEst: number | null
   }
 
   export type CompanyMinAggregateOutputType = {
     id: number | null
-    Name: string | null
-    Overview: string | null
-    Industry: string | null
-    CompanySize: string | null
-    YearEst: number | null
-    GeneralBe: string | null
+    name: string | null
+    overview: string | null
+    industry: string | null
+    companySize: string | null
+    yearEst: number | null
+    generalBe: string | null
     location: string | null
-    Telcontact: string | null
-    Email: string | null
-    WebsiteURL: string | null
+    contactPhone: string | null
+    email: string | null
+    websiteURL: string | null
     password: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2724,16 +2724,16 @@ export namespace Prisma {
 
   export type CompanyMaxAggregateOutputType = {
     id: number | null
-    Name: string | null
-    Overview: string | null
-    Industry: string | null
-    CompanySize: string | null
-    YearEst: number | null
-    GeneralBe: string | null
+    name: string | null
+    overview: string | null
+    industry: string | null
+    companySize: string | null
+    yearEst: number | null
+    generalBe: string | null
     location: string | null
-    Telcontact: string | null
-    Email: string | null
-    WebsiteURL: string | null
+    contactPhone: string | null
+    email: string | null
+    websiteURL: string | null
     password: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2741,16 +2741,16 @@ export namespace Prisma {
 
   export type CompanyCountAggregateOutputType = {
     id: number
-    Name: number
-    Overview: number
-    Industry: number
-    CompanySize: number
-    YearEst: number
-    GeneralBe: number
+    name: number
+    overview: number
+    industry: number
+    companySize: number
+    yearEst: number
+    generalBe: number
     location: number
-    Telcontact: number
-    Email: number
-    WebsiteURL: number
+    contactPhone: number
+    email: number
+    websiteURL: number
     password: number
     createdAt: number
     updatedAt: number
@@ -2760,26 +2760,26 @@ export namespace Prisma {
 
   export type CompanyAvgAggregateInputType = {
     id?: true
-    YearEst?: true
+    yearEst?: true
   }
 
   export type CompanySumAggregateInputType = {
     id?: true
-    YearEst?: true
+    yearEst?: true
   }
 
   export type CompanyMinAggregateInputType = {
     id?: true
-    Name?: true
-    Overview?: true
-    Industry?: true
-    CompanySize?: true
-    YearEst?: true
-    GeneralBe?: true
+    name?: true
+    overview?: true
+    industry?: true
+    companySize?: true
+    yearEst?: true
+    generalBe?: true
     location?: true
-    Telcontact?: true
-    Email?: true
-    WebsiteURL?: true
+    contactPhone?: true
+    email?: true
+    websiteURL?: true
     password?: true
     createdAt?: true
     updatedAt?: true
@@ -2787,16 +2787,16 @@ export namespace Prisma {
 
   export type CompanyMaxAggregateInputType = {
     id?: true
-    Name?: true
-    Overview?: true
-    Industry?: true
-    CompanySize?: true
-    YearEst?: true
-    GeneralBe?: true
+    name?: true
+    overview?: true
+    industry?: true
+    companySize?: true
+    yearEst?: true
+    generalBe?: true
     location?: true
-    Telcontact?: true
-    Email?: true
-    WebsiteURL?: true
+    contactPhone?: true
+    email?: true
+    websiteURL?: true
     password?: true
     createdAt?: true
     updatedAt?: true
@@ -2804,16 +2804,16 @@ export namespace Prisma {
 
   export type CompanyCountAggregateInputType = {
     id?: true
-    Name?: true
-    Overview?: true
-    Industry?: true
-    CompanySize?: true
-    YearEst?: true
-    GeneralBe?: true
+    name?: true
+    overview?: true
+    industry?: true
+    companySize?: true
+    yearEst?: true
+    generalBe?: true
     location?: true
-    Telcontact?: true
-    Email?: true
-    WebsiteURL?: true
+    contactPhone?: true
+    email?: true
+    websiteURL?: true
     password?: true
     createdAt?: true
     updatedAt?: true
@@ -2908,16 +2908,16 @@ export namespace Prisma {
 
   export type CompanyGroupByOutputType = {
     id: number
-    Name: string
-    Overview: string | null
-    Industry: string | null
-    CompanySize: string | null
-    YearEst: number | null
-    GeneralBe: string | null
+    name: string
+    overview: string | null
+    industry: string | null
+    companySize: string | null
+    yearEst: number | null
+    generalBe: string | null
     location: string
-    Telcontact: string | null
-    Email: string
-    WebsiteURL: string | null
+    contactPhone: string | null
+    email: string
+    websiteURL: string | null
     password: string
     createdAt: Date
     updatedAt: Date
@@ -2944,35 +2944,35 @@ export namespace Prisma {
 
   export type CompanySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    Name?: boolean
-    Overview?: boolean
-    Industry?: boolean
-    CompanySize?: boolean
-    YearEst?: boolean
-    GeneralBe?: boolean
+    name?: boolean
+    overview?: boolean
+    industry?: boolean
+    companySize?: boolean
+    yearEst?: boolean
+    generalBe?: boolean
     location?: boolean
-    Telcontact?: boolean
-    Email?: boolean
-    WebsiteURL?: boolean
+    contactPhone?: boolean
+    email?: boolean
+    websiteURL?: boolean
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    Job?: boolean | Company$JobArgs<ExtArgs>
+    jobs?: boolean | Company$jobsArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["company"]>
 
   export type CompanySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    Name?: boolean
-    Overview?: boolean
-    Industry?: boolean
-    CompanySize?: boolean
-    YearEst?: boolean
-    GeneralBe?: boolean
+    name?: boolean
+    overview?: boolean
+    industry?: boolean
+    companySize?: boolean
+    yearEst?: boolean
+    generalBe?: boolean
     location?: boolean
-    Telcontact?: boolean
-    Email?: boolean
-    WebsiteURL?: boolean
+    contactPhone?: boolean
+    email?: boolean
+    websiteURL?: boolean
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2980,16 +2980,16 @@ export namespace Prisma {
 
   export type CompanySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    Name?: boolean
-    Overview?: boolean
-    Industry?: boolean
-    CompanySize?: boolean
-    YearEst?: boolean
-    GeneralBe?: boolean
+    name?: boolean
+    overview?: boolean
+    industry?: boolean
+    companySize?: boolean
+    yearEst?: boolean
+    generalBe?: boolean
     location?: boolean
-    Telcontact?: boolean
-    Email?: boolean
-    WebsiteURL?: boolean
+    contactPhone?: boolean
+    email?: boolean
+    websiteURL?: boolean
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2997,24 +2997,24 @@ export namespace Prisma {
 
   export type CompanySelectScalar = {
     id?: boolean
-    Name?: boolean
-    Overview?: boolean
-    Industry?: boolean
-    CompanySize?: boolean
-    YearEst?: boolean
-    GeneralBe?: boolean
+    name?: boolean
+    overview?: boolean
+    industry?: boolean
+    companySize?: boolean
+    yearEst?: boolean
+    generalBe?: boolean
     location?: boolean
-    Telcontact?: boolean
-    Email?: boolean
-    WebsiteURL?: boolean
+    contactPhone?: boolean
+    email?: boolean
+    websiteURL?: boolean
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CompanyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Name" | "Overview" | "Industry" | "CompanySize" | "YearEst" | "GeneralBe" | "location" | "Telcontact" | "Email" | "WebsiteURL" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
+  export type CompanyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "overview" | "industry" | "companySize" | "yearEst" | "generalBe" | "location" | "contactPhone" | "email" | "websiteURL" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
   export type CompanyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Job?: boolean | Company$JobArgs<ExtArgs>
+    jobs?: boolean | Company$jobsArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CompanyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3023,20 +3023,20 @@ export namespace Prisma {
   export type $CompanyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Company"
     objects: {
-      Job: Prisma.$JobPayload<ExtArgs>[]
+      jobs: Prisma.$JobPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      Name: string
-      Overview: string | null
-      Industry: string | null
-      CompanySize: string | null
-      YearEst: number | null
-      GeneralBe: string | null
+      name: string
+      overview: string | null
+      industry: string | null
+      companySize: string | null
+      yearEst: number | null
+      generalBe: string | null
       location: string
-      Telcontact: string | null
-      Email: string
-      WebsiteURL: string | null
+      contactPhone: string | null
+      email: string
+      websiteURL: string | null
       password: string
       createdAt: Date
       updatedAt: Date
@@ -3434,7 +3434,7 @@ export namespace Prisma {
    */
   export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Job<T extends Company$JobArgs<ExtArgs> = {}>(args?: Subset<T, Company$JobArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    jobs<T extends Company$jobsArgs<ExtArgs> = {}>(args?: Subset<T, Company$jobsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3465,16 +3465,16 @@ export namespace Prisma {
    */
   interface CompanyFieldRefs {
     readonly id: FieldRef<"Company", 'Int'>
-    readonly Name: FieldRef<"Company", 'String'>
-    readonly Overview: FieldRef<"Company", 'String'>
-    readonly Industry: FieldRef<"Company", 'String'>
-    readonly CompanySize: FieldRef<"Company", 'String'>
-    readonly YearEst: FieldRef<"Company", 'Int'>
-    readonly GeneralBe: FieldRef<"Company", 'String'>
+    readonly name: FieldRef<"Company", 'String'>
+    readonly overview: FieldRef<"Company", 'String'>
+    readonly industry: FieldRef<"Company", 'String'>
+    readonly companySize: FieldRef<"Company", 'String'>
+    readonly yearEst: FieldRef<"Company", 'Int'>
+    readonly generalBe: FieldRef<"Company", 'String'>
     readonly location: FieldRef<"Company", 'String'>
-    readonly Telcontact: FieldRef<"Company", 'String'>
-    readonly Email: FieldRef<"Company", 'String'>
-    readonly WebsiteURL: FieldRef<"Company", 'String'>
+    readonly contactPhone: FieldRef<"Company", 'String'>
+    readonly email: FieldRef<"Company", 'String'>
+    readonly websiteURL: FieldRef<"Company", 'String'>
     readonly password: FieldRef<"Company", 'String'>
     readonly createdAt: FieldRef<"Company", 'DateTime'>
     readonly updatedAt: FieldRef<"Company", 'DateTime'>
@@ -3864,9 +3864,9 @@ export namespace Prisma {
   }
 
   /**
-   * Company.Job
+   * Company.jobs
    */
-  export type Company$JobArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Company$jobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Job
      */
@@ -7379,16 +7379,16 @@ export namespace Prisma {
 
   export const CompanyScalarFieldEnum: {
     id: 'id',
-    Name: 'Name',
-    Overview: 'Overview',
-    Industry: 'Industry',
-    CompanySize: 'CompanySize',
-    YearEst: 'YearEst',
-    GeneralBe: 'GeneralBe',
+    name: 'name',
+    overview: 'overview',
+    industry: 'industry',
+    companySize: 'companySize',
+    yearEst: 'yearEst',
+    generalBe: 'generalBe',
     location: 'location',
-    Telcontact: 'Telcontact',
-    Email: 'Email',
-    WebsiteURL: 'WebsiteURL',
+    contactPhone: 'contactPhone',
+    email: 'email',
+    websiteURL: 'websiteURL',
     password: 'password',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -7636,73 +7636,73 @@ export namespace Prisma {
     OR?: CompanyWhereInput[]
     NOT?: CompanyWhereInput | CompanyWhereInput[]
     id?: IntFilter<"Company"> | number
-    Name?: StringFilter<"Company"> | string
-    Overview?: StringNullableFilter<"Company"> | string | null
-    Industry?: StringNullableFilter<"Company"> | string | null
-    CompanySize?: StringNullableFilter<"Company"> | string | null
-    YearEst?: IntNullableFilter<"Company"> | number | null
-    GeneralBe?: StringNullableFilter<"Company"> | string | null
+    name?: StringFilter<"Company"> | string
+    overview?: StringNullableFilter<"Company"> | string | null
+    industry?: StringNullableFilter<"Company"> | string | null
+    companySize?: StringNullableFilter<"Company"> | string | null
+    yearEst?: IntNullableFilter<"Company"> | number | null
+    generalBe?: StringNullableFilter<"Company"> | string | null
     location?: StringFilter<"Company"> | string
-    Telcontact?: StringNullableFilter<"Company"> | string | null
-    Email?: StringFilter<"Company"> | string
-    WebsiteURL?: StringNullableFilter<"Company"> | string | null
+    contactPhone?: StringNullableFilter<"Company"> | string | null
+    email?: StringFilter<"Company"> | string
+    websiteURL?: StringNullableFilter<"Company"> | string | null
     password?: StringFilter<"Company"> | string
     createdAt?: DateTimeFilter<"Company"> | Date | string
     updatedAt?: DateTimeFilter<"Company"> | Date | string
-    Job?: JobListRelationFilter
+    jobs?: JobListRelationFilter
   }
 
   export type CompanyOrderByWithRelationInput = {
     id?: SortOrder
-    Name?: SortOrder
-    Overview?: SortOrderInput | SortOrder
-    Industry?: SortOrderInput | SortOrder
-    CompanySize?: SortOrderInput | SortOrder
-    YearEst?: SortOrderInput | SortOrder
-    GeneralBe?: SortOrderInput | SortOrder
+    name?: SortOrder
+    overview?: SortOrderInput | SortOrder
+    industry?: SortOrderInput | SortOrder
+    companySize?: SortOrderInput | SortOrder
+    yearEst?: SortOrderInput | SortOrder
+    generalBe?: SortOrderInput | SortOrder
     location?: SortOrder
-    Telcontact?: SortOrderInput | SortOrder
-    Email?: SortOrder
-    WebsiteURL?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    email?: SortOrder
+    websiteURL?: SortOrderInput | SortOrder
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    Job?: JobOrderByRelationAggregateInput
+    jobs?: JobOrderByRelationAggregateInput
   }
 
   export type CompanyWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    Email?: string
+    email?: string
     AND?: CompanyWhereInput | CompanyWhereInput[]
     OR?: CompanyWhereInput[]
     NOT?: CompanyWhereInput | CompanyWhereInput[]
-    Name?: StringFilter<"Company"> | string
-    Overview?: StringNullableFilter<"Company"> | string | null
-    Industry?: StringNullableFilter<"Company"> | string | null
-    CompanySize?: StringNullableFilter<"Company"> | string | null
-    YearEst?: IntNullableFilter<"Company"> | number | null
-    GeneralBe?: StringNullableFilter<"Company"> | string | null
+    name?: StringFilter<"Company"> | string
+    overview?: StringNullableFilter<"Company"> | string | null
+    industry?: StringNullableFilter<"Company"> | string | null
+    companySize?: StringNullableFilter<"Company"> | string | null
+    yearEst?: IntNullableFilter<"Company"> | number | null
+    generalBe?: StringNullableFilter<"Company"> | string | null
     location?: StringFilter<"Company"> | string
-    Telcontact?: StringNullableFilter<"Company"> | string | null
-    WebsiteURL?: StringNullableFilter<"Company"> | string | null
+    contactPhone?: StringNullableFilter<"Company"> | string | null
+    websiteURL?: StringNullableFilter<"Company"> | string | null
     password?: StringFilter<"Company"> | string
     createdAt?: DateTimeFilter<"Company"> | Date | string
     updatedAt?: DateTimeFilter<"Company"> | Date | string
-    Job?: JobListRelationFilter
-  }, "id" | "Email">
+    jobs?: JobListRelationFilter
+  }, "id" | "email">
 
   export type CompanyOrderByWithAggregationInput = {
     id?: SortOrder
-    Name?: SortOrder
-    Overview?: SortOrderInput | SortOrder
-    Industry?: SortOrderInput | SortOrder
-    CompanySize?: SortOrderInput | SortOrder
-    YearEst?: SortOrderInput | SortOrder
-    GeneralBe?: SortOrderInput | SortOrder
+    name?: SortOrder
+    overview?: SortOrderInput | SortOrder
+    industry?: SortOrderInput | SortOrder
+    companySize?: SortOrderInput | SortOrder
+    yearEst?: SortOrderInput | SortOrder
+    generalBe?: SortOrderInput | SortOrder
     location?: SortOrder
-    Telcontact?: SortOrderInput | SortOrder
-    Email?: SortOrder
-    WebsiteURL?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    email?: SortOrder
+    websiteURL?: SortOrderInput | SortOrder
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7718,16 +7718,16 @@ export namespace Prisma {
     OR?: CompanyScalarWhereWithAggregatesInput[]
     NOT?: CompanyScalarWhereWithAggregatesInput | CompanyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Company"> | number
-    Name?: StringWithAggregatesFilter<"Company"> | string
-    Overview?: StringNullableWithAggregatesFilter<"Company"> | string | null
-    Industry?: StringNullableWithAggregatesFilter<"Company"> | string | null
-    CompanySize?: StringNullableWithAggregatesFilter<"Company"> | string | null
-    YearEst?: IntNullableWithAggregatesFilter<"Company"> | number | null
-    GeneralBe?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    name?: StringWithAggregatesFilter<"Company"> | string
+    overview?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    industry?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    companySize?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    yearEst?: IntNullableWithAggregatesFilter<"Company"> | number | null
+    generalBe?: StringNullableWithAggregatesFilter<"Company"> | string | null
     location?: StringWithAggregatesFilter<"Company"> | string
-    Telcontact?: StringNullableWithAggregatesFilter<"Company"> | string | null
-    Email?: StringWithAggregatesFilter<"Company"> | string
-    WebsiteURL?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    contactPhone?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    email?: StringWithAggregatesFilter<"Company"> | string
+    websiteURL?: StringNullableWithAggregatesFilter<"Company"> | string | null
     password?: StringWithAggregatesFilter<"Company"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Company"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Company"> | Date | string
@@ -8108,103 +8108,103 @@ export namespace Prisma {
   }
 
   export type CompanyCreateInput = {
-    Name: string
-    Overview?: string | null
-    Industry?: string | null
-    CompanySize?: string | null
-    YearEst?: number | null
-    GeneralBe?: string | null
+    name: string
+    overview?: string | null
+    industry?: string | null
+    companySize?: string | null
+    yearEst?: number | null
+    generalBe?: string | null
     location: string
-    Telcontact?: string | null
-    Email: string
-    WebsiteURL?: string | null
+    contactPhone?: string | null
+    email: string
+    websiteURL?: string | null
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    Job?: JobCreateNestedManyWithoutCompanyInput
+    jobs?: JobCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateInput = {
     id?: number
-    Name: string
-    Overview?: string | null
-    Industry?: string | null
-    CompanySize?: string | null
-    YearEst?: number | null
-    GeneralBe?: string | null
+    name: string
+    overview?: string | null
+    industry?: string | null
+    companySize?: string | null
+    yearEst?: number | null
+    generalBe?: string | null
     location: string
-    Telcontact?: string | null
-    Email: string
-    WebsiteURL?: string | null
+    contactPhone?: string | null
+    email: string
+    websiteURL?: string | null
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    Job?: JobUncheckedCreateNestedManyWithoutCompanyInput
+    jobs?: JobUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUpdateInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    Overview?: NullableStringFieldUpdateOperationsInput | string | null
-    Industry?: NullableStringFieldUpdateOperationsInput | string | null
-    CompanySize?: NullableStringFieldUpdateOperationsInput | string | null
-    YearEst?: NullableIntFieldUpdateOperationsInput | number | null
-    GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    industry?: NullableStringFieldUpdateOperationsInput | string | null
+    companySize?: NullableStringFieldUpdateOperationsInput | string | null
+    yearEst?: NullableIntFieldUpdateOperationsInput | number | null
+    generalBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
-    Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: StringFieldUpdateOperationsInput | string
-    WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    websiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Job?: JobUpdateManyWithoutCompanyNestedInput
+    jobs?: JobUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    Name?: StringFieldUpdateOperationsInput | string
-    Overview?: NullableStringFieldUpdateOperationsInput | string | null
-    Industry?: NullableStringFieldUpdateOperationsInput | string | null
-    CompanySize?: NullableStringFieldUpdateOperationsInput | string | null
-    YearEst?: NullableIntFieldUpdateOperationsInput | number | null
-    GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    industry?: NullableStringFieldUpdateOperationsInput | string | null
+    companySize?: NullableStringFieldUpdateOperationsInput | string | null
+    yearEst?: NullableIntFieldUpdateOperationsInput | number | null
+    generalBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
-    Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: StringFieldUpdateOperationsInput | string
-    WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    websiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Job?: JobUncheckedUpdateManyWithoutCompanyNestedInput
+    jobs?: JobUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyCreateManyInput = {
     id?: number
-    Name: string
-    Overview?: string | null
-    Industry?: string | null
-    CompanySize?: string | null
-    YearEst?: number | null
-    GeneralBe?: string | null
+    name: string
+    overview?: string | null
+    industry?: string | null
+    companySize?: string | null
+    yearEst?: number | null
+    generalBe?: string | null
     location: string
-    Telcontact?: string | null
-    Email: string
-    WebsiteURL?: string | null
+    contactPhone?: string | null
+    email: string
+    websiteURL?: string | null
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CompanyUpdateManyMutationInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    Overview?: NullableStringFieldUpdateOperationsInput | string | null
-    Industry?: NullableStringFieldUpdateOperationsInput | string | null
-    CompanySize?: NullableStringFieldUpdateOperationsInput | string | null
-    YearEst?: NullableIntFieldUpdateOperationsInput | number | null
-    GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    industry?: NullableStringFieldUpdateOperationsInput | string | null
+    companySize?: NullableStringFieldUpdateOperationsInput | string | null
+    yearEst?: NullableIntFieldUpdateOperationsInput | number | null
+    generalBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
-    Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: StringFieldUpdateOperationsInput | string
-    WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    websiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8212,16 +8212,16 @@ export namespace Prisma {
 
   export type CompanyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    Name?: StringFieldUpdateOperationsInput | string
-    Overview?: NullableStringFieldUpdateOperationsInput | string | null
-    Industry?: NullableStringFieldUpdateOperationsInput | string | null
-    CompanySize?: NullableStringFieldUpdateOperationsInput | string | null
-    YearEst?: NullableIntFieldUpdateOperationsInput | number | null
-    GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    industry?: NullableStringFieldUpdateOperationsInput | string | null
+    companySize?: NullableStringFieldUpdateOperationsInput | string | null
+    yearEst?: NullableIntFieldUpdateOperationsInput | number | null
+    generalBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
-    Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: StringFieldUpdateOperationsInput | string
-    WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    websiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8240,7 +8240,7 @@ export namespace Prisma {
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    company: CompanyCreateNestedOneWithoutJobInput
+    company: CompanyCreateNestedOneWithoutJobsInput
     ApplicantList?: ApplicationCreateNestedManyWithoutJobInput
     categories?: CategoryCreateNestedManyWithoutJobInput
   }
@@ -8277,7 +8277,7 @@ export namespace Prisma {
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    company?: CompanyUpdateOneRequiredWithoutJobNestedInput
+    company?: CompanyUpdateOneRequiredWithoutJobsNestedInput
     ApplicantList?: ApplicationUpdateManyWithoutJobNestedInput
     categories?: CategoryUpdateManyWithoutJobNestedInput
   }
@@ -8720,16 +8720,16 @@ export namespace Prisma {
 
   export type CompanyCountOrderByAggregateInput = {
     id?: SortOrder
-    Name?: SortOrder
-    Overview?: SortOrder
-    Industry?: SortOrder
-    CompanySize?: SortOrder
-    YearEst?: SortOrder
-    GeneralBe?: SortOrder
+    name?: SortOrder
+    overview?: SortOrder
+    industry?: SortOrder
+    companySize?: SortOrder
+    yearEst?: SortOrder
+    generalBe?: SortOrder
     location?: SortOrder
-    Telcontact?: SortOrder
-    Email?: SortOrder
-    WebsiteURL?: SortOrder
+    contactPhone?: SortOrder
+    email?: SortOrder
+    websiteURL?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8737,21 +8737,21 @@ export namespace Prisma {
 
   export type CompanyAvgOrderByAggregateInput = {
     id?: SortOrder
-    YearEst?: SortOrder
+    yearEst?: SortOrder
   }
 
   export type CompanyMaxOrderByAggregateInput = {
     id?: SortOrder
-    Name?: SortOrder
-    Overview?: SortOrder
-    Industry?: SortOrder
-    CompanySize?: SortOrder
-    YearEst?: SortOrder
-    GeneralBe?: SortOrder
+    name?: SortOrder
+    overview?: SortOrder
+    industry?: SortOrder
+    companySize?: SortOrder
+    yearEst?: SortOrder
+    generalBe?: SortOrder
     location?: SortOrder
-    Telcontact?: SortOrder
-    Email?: SortOrder
-    WebsiteURL?: SortOrder
+    contactPhone?: SortOrder
+    email?: SortOrder
+    websiteURL?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8759,16 +8759,16 @@ export namespace Prisma {
 
   export type CompanyMinOrderByAggregateInput = {
     id?: SortOrder
-    Name?: SortOrder
-    Overview?: SortOrder
-    Industry?: SortOrder
-    CompanySize?: SortOrder
-    YearEst?: SortOrder
-    GeneralBe?: SortOrder
+    name?: SortOrder
+    overview?: SortOrder
+    industry?: SortOrder
+    companySize?: SortOrder
+    yearEst?: SortOrder
+    generalBe?: SortOrder
     location?: SortOrder
-    Telcontact?: SortOrder
-    Email?: SortOrder
-    WebsiteURL?: SortOrder
+    contactPhone?: SortOrder
+    email?: SortOrder
+    websiteURL?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8776,7 +8776,7 @@ export namespace Prisma {
 
   export type CompanySumOrderByAggregateInput = {
     id?: SortOrder
-    YearEst?: SortOrder
+    yearEst?: SortOrder
   }
 
   export type CompanyScalarRelationFilter = {
@@ -9045,9 +9045,9 @@ export namespace Prisma {
     deleteMany?: JobScalarWhereInput | JobScalarWhereInput[]
   }
 
-  export type CompanyCreateNestedOneWithoutJobInput = {
-    create?: XOR<CompanyCreateWithoutJobInput, CompanyUncheckedCreateWithoutJobInput>
-    connectOrCreate?: CompanyCreateOrConnectWithoutJobInput
+  export type CompanyCreateNestedOneWithoutJobsInput = {
+    create?: XOR<CompanyCreateWithoutJobsInput, CompanyUncheckedCreateWithoutJobsInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutJobsInput
     connect?: CompanyWhereUniqueInput
   }
 
@@ -9077,12 +9077,12 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
   }
 
-  export type CompanyUpdateOneRequiredWithoutJobNestedInput = {
-    create?: XOR<CompanyCreateWithoutJobInput, CompanyUncheckedCreateWithoutJobInput>
-    connectOrCreate?: CompanyCreateOrConnectWithoutJobInput
-    upsert?: CompanyUpsertWithoutJobInput
+  export type CompanyUpdateOneRequiredWithoutJobsNestedInput = {
+    create?: XOR<CompanyCreateWithoutJobsInput, CompanyUncheckedCreateWithoutJobsInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutJobsInput
+    upsert?: CompanyUpsertWithoutJobsInput
     connect?: CompanyWhereUniqueInput
-    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutJobInput, CompanyUpdateWithoutJobInput>, CompanyUncheckedUpdateWithoutJobInput>
+    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutJobsInput, CompanyUpdateWithoutJobsInput>, CompanyUncheckedUpdateWithoutJobsInput>
   }
 
   export type ApplicationUpdateManyWithoutJobNestedInput = {
@@ -9532,42 +9532,42 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Job"> | Date | string
   }
 
-  export type CompanyCreateWithoutJobInput = {
-    Name: string
-    Overview?: string | null
-    Industry?: string | null
-    CompanySize?: string | null
-    YearEst?: number | null
-    GeneralBe?: string | null
+  export type CompanyCreateWithoutJobsInput = {
+    name: string
+    overview?: string | null
+    industry?: string | null
+    companySize?: string | null
+    yearEst?: number | null
+    generalBe?: string | null
     location: string
-    Telcontact?: string | null
-    Email: string
-    WebsiteURL?: string | null
+    contactPhone?: string | null
+    email: string
+    websiteURL?: string | null
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type CompanyUncheckedCreateWithoutJobInput = {
+  export type CompanyUncheckedCreateWithoutJobsInput = {
     id?: number
-    Name: string
-    Overview?: string | null
-    Industry?: string | null
-    CompanySize?: string | null
-    YearEst?: number | null
-    GeneralBe?: string | null
+    name: string
+    overview?: string | null
+    industry?: string | null
+    companySize?: string | null
+    yearEst?: number | null
+    generalBe?: string | null
     location: string
-    Telcontact?: string | null
-    Email: string
-    WebsiteURL?: string | null
+    contactPhone?: string | null
+    email: string
+    websiteURL?: string | null
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type CompanyCreateOrConnectWithoutJobInput = {
+  export type CompanyCreateOrConnectWithoutJobsInput = {
     where: CompanyWhereUniqueInput
-    create: XOR<CompanyCreateWithoutJobInput, CompanyUncheckedCreateWithoutJobInput>
+    create: XOR<CompanyCreateWithoutJobsInput, CompanyUncheckedCreateWithoutJobsInput>
   }
 
   export type ApplicationCreateWithoutJobInput = {
@@ -9604,45 +9604,45 @@ export namespace Prisma {
     create: XOR<CategoryCreateWithoutJobInput, CategoryUncheckedCreateWithoutJobInput>
   }
 
-  export type CompanyUpsertWithoutJobInput = {
-    update: XOR<CompanyUpdateWithoutJobInput, CompanyUncheckedUpdateWithoutJobInput>
-    create: XOR<CompanyCreateWithoutJobInput, CompanyUncheckedCreateWithoutJobInput>
+  export type CompanyUpsertWithoutJobsInput = {
+    update: XOR<CompanyUpdateWithoutJobsInput, CompanyUncheckedUpdateWithoutJobsInput>
+    create: XOR<CompanyCreateWithoutJobsInput, CompanyUncheckedCreateWithoutJobsInput>
     where?: CompanyWhereInput
   }
 
-  export type CompanyUpdateToOneWithWhereWithoutJobInput = {
+  export type CompanyUpdateToOneWithWhereWithoutJobsInput = {
     where?: CompanyWhereInput
-    data: XOR<CompanyUpdateWithoutJobInput, CompanyUncheckedUpdateWithoutJobInput>
+    data: XOR<CompanyUpdateWithoutJobsInput, CompanyUncheckedUpdateWithoutJobsInput>
   }
 
-  export type CompanyUpdateWithoutJobInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    Overview?: NullableStringFieldUpdateOperationsInput | string | null
-    Industry?: NullableStringFieldUpdateOperationsInput | string | null
-    CompanySize?: NullableStringFieldUpdateOperationsInput | string | null
-    YearEst?: NullableIntFieldUpdateOperationsInput | number | null
-    GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
+  export type CompanyUpdateWithoutJobsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    industry?: NullableStringFieldUpdateOperationsInput | string | null
+    companySize?: NullableStringFieldUpdateOperationsInput | string | null
+    yearEst?: NullableIntFieldUpdateOperationsInput | number | null
+    generalBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
-    Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: StringFieldUpdateOperationsInput | string
-    WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    websiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CompanyUncheckedUpdateWithoutJobInput = {
+  export type CompanyUncheckedUpdateWithoutJobsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    Name?: StringFieldUpdateOperationsInput | string
-    Overview?: NullableStringFieldUpdateOperationsInput | string | null
-    Industry?: NullableStringFieldUpdateOperationsInput | string | null
-    CompanySize?: NullableStringFieldUpdateOperationsInput | string | null
-    YearEst?: NullableIntFieldUpdateOperationsInput | number | null
-    GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    industry?: NullableStringFieldUpdateOperationsInput | string | null
+    companySize?: NullableStringFieldUpdateOperationsInput | string | null
+    yearEst?: NullableIntFieldUpdateOperationsInput | number | null
+    generalBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
-    Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: StringFieldUpdateOperationsInput | string
-    WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    websiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9753,7 +9753,7 @@ export namespace Prisma {
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    company: CompanyCreateNestedOneWithoutJobInput
+    company: CompanyCreateNestedOneWithoutJobsInput
     categories?: CategoryCreateNestedManyWithoutJobInput
   }
 
@@ -9862,7 +9862,7 @@ export namespace Prisma {
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    company?: CompanyUpdateOneRequiredWithoutJobNestedInput
+    company?: CompanyUpdateOneRequiredWithoutJobsNestedInput
     categories?: CategoryUpdateManyWithoutJobNestedInput
   }
 
@@ -9897,7 +9897,7 @@ export namespace Prisma {
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    company: CompanyCreateNestedOneWithoutJobInput
+    company: CompanyCreateNestedOneWithoutJobsInput
     ApplicantList?: ApplicationCreateNestedManyWithoutJobInput
   }
 
@@ -10080,7 +10080,7 @@ export namespace Prisma {
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    company?: CompanyUpdateOneRequiredWithoutJobNestedInput
+    company?: CompanyUpdateOneRequiredWithoutJobsNestedInput
     ApplicantList?: ApplicationUpdateManyWithoutJobNestedInput
   }
 
