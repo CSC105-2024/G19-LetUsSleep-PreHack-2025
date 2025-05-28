@@ -1643,7 +1643,7 @@ export namespace Prisma {
     Bdate: Date | null
     age: number | null
     Telphone: string | null
-    Email: string | null
+    Email: string
     password: string
     ResumeURL: string | null
     hasExperience: boolean
@@ -1797,7 +1797,7 @@ export namespace Prisma {
       Bdate: Date | null
       age: number | null
       Telphone: string | null
-      Email: string | null
+      Email: string
       password: string
       ResumeURL: string | null
       hasExperience: boolean
@@ -2916,7 +2916,7 @@ export namespace Prisma {
     GeneralBe: string | null
     location: string
     Telcontact: string | null
-    Email: string | null
+    Email: string
     WebsiteURL: string | null
     password: string
     createdAt: Date
@@ -3035,7 +3035,7 @@ export namespace Prisma {
       GeneralBe: string | null
       location: string
       Telcontact: string | null
-      Email: string | null
+      Email: string
       WebsiteURL: string | null
       password: string
       createdAt: Date
@@ -7506,7 +7506,7 @@ export namespace Prisma {
     Bdate?: DateTimeNullableFilter<"User"> | Date | string | null
     age?: IntNullableFilter<"User"> | number | null
     Telphone?: StringNullableFilter<"User"> | string | null
-    Email?: StringNullableFilter<"User"> | string | null
+    Email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     ResumeURL?: StringNullableFilter<"User"> | string | null
     hasExperience?: BoolFilter<"User"> | boolean
@@ -7531,7 +7531,7 @@ export namespace Prisma {
     Bdate?: SortOrderInput | SortOrder
     age?: SortOrderInput | SortOrder
     Telphone?: SortOrderInput | SortOrder
-    Email?: SortOrderInput | SortOrder
+    Email?: SortOrder
     password?: SortOrder
     ResumeURL?: SortOrderInput | SortOrder
     hasExperience?: SortOrder
@@ -7550,6 +7550,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     userId?: number
+    Email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -7559,7 +7560,6 @@ export namespace Prisma {
     Bdate?: DateTimeNullableFilter<"User"> | Date | string | null
     age?: IntNullableFilter<"User"> | number | null
     Telphone?: StringNullableFilter<"User"> | string | null
-    Email?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
     ResumeURL?: StringNullableFilter<"User"> | string | null
     hasExperience?: BoolFilter<"User"> | boolean
@@ -7573,7 +7573,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Apply?: ApplicationListRelationFilter
-  }, "id" | "userId">
+  }, "id" | "userId" | "Email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7584,7 +7584,7 @@ export namespace Prisma {
     Bdate?: SortOrderInput | SortOrder
     age?: SortOrderInput | SortOrder
     Telphone?: SortOrderInput | SortOrder
-    Email?: SortOrderInput | SortOrder
+    Email?: SortOrder
     password?: SortOrder
     ResumeURL?: SortOrderInput | SortOrder
     hasExperience?: SortOrder
@@ -7616,7 +7616,7 @@ export namespace Prisma {
     Bdate?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     age?: IntNullableWithAggregatesFilter<"User"> | number | null
     Telphone?: StringNullableWithAggregatesFilter<"User"> | string | null
-    Email?: StringNullableWithAggregatesFilter<"User"> | string | null
+    Email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     ResumeURL?: StringNullableWithAggregatesFilter<"User"> | string | null
     hasExperience?: BoolWithAggregatesFilter<"User"> | boolean
@@ -7644,7 +7644,7 @@ export namespace Prisma {
     GeneralBe?: StringNullableFilter<"Company"> | string | null
     location?: StringFilter<"Company"> | string
     Telcontact?: StringNullableFilter<"Company"> | string | null
-    Email?: StringNullableFilter<"Company"> | string | null
+    Email?: StringFilter<"Company"> | string
     WebsiteURL?: StringNullableFilter<"Company"> | string | null
     password?: StringFilter<"Company"> | string
     createdAt?: DateTimeFilter<"Company"> | Date | string
@@ -7662,7 +7662,7 @@ export namespace Prisma {
     GeneralBe?: SortOrderInput | SortOrder
     location?: SortOrder
     Telcontact?: SortOrderInput | SortOrder
-    Email?: SortOrderInput | SortOrder
+    Email?: SortOrder
     WebsiteURL?: SortOrderInput | SortOrder
     password?: SortOrder
     createdAt?: SortOrder
@@ -7672,6 +7672,7 @@ export namespace Prisma {
 
   export type CompanyWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    Email?: string
     AND?: CompanyWhereInput | CompanyWhereInput[]
     OR?: CompanyWhereInput[]
     NOT?: CompanyWhereInput | CompanyWhereInput[]
@@ -7683,13 +7684,12 @@ export namespace Prisma {
     GeneralBe?: StringNullableFilter<"Company"> | string | null
     location?: StringFilter<"Company"> | string
     Telcontact?: StringNullableFilter<"Company"> | string | null
-    Email?: StringNullableFilter<"Company"> | string | null
     WebsiteURL?: StringNullableFilter<"Company"> | string | null
     password?: StringFilter<"Company"> | string
     createdAt?: DateTimeFilter<"Company"> | Date | string
     updatedAt?: DateTimeFilter<"Company"> | Date | string
     Job?: JobListRelationFilter
-  }, "id">
+  }, "id" | "Email">
 
   export type CompanyOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7701,7 +7701,7 @@ export namespace Prisma {
     GeneralBe?: SortOrderInput | SortOrder
     location?: SortOrder
     Telcontact?: SortOrderInput | SortOrder
-    Email?: SortOrderInput | SortOrder
+    Email?: SortOrder
     WebsiteURL?: SortOrderInput | SortOrder
     password?: SortOrder
     createdAt?: SortOrder
@@ -7726,7 +7726,7 @@ export namespace Prisma {
     GeneralBe?: StringNullableWithAggregatesFilter<"Company"> | string | null
     location?: StringWithAggregatesFilter<"Company"> | string
     Telcontact?: StringNullableWithAggregatesFilter<"Company"> | string | null
-    Email?: StringNullableWithAggregatesFilter<"Company"> | string | null
+    Email?: StringWithAggregatesFilter<"Company"> | string
     WebsiteURL?: StringNullableWithAggregatesFilter<"Company"> | string | null
     password?: StringWithAggregatesFilter<"Company"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Company"> | Date | string
@@ -7946,7 +7946,7 @@ export namespace Prisma {
     Bdate?: Date | string | null
     age?: number | null
     Telphone?: string | null
-    Email?: string | null
+    Email: string
     password: string
     ResumeURL?: string | null
     hasExperience?: boolean
@@ -7971,7 +7971,7 @@ export namespace Prisma {
     Bdate?: Date | string | null
     age?: number | null
     Telphone?: string | null
-    Email?: string | null
+    Email: string
     password: string
     ResumeURL?: string | null
     hasExperience?: boolean
@@ -7995,7 +7995,7 @@ export namespace Prisma {
     Bdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     age?: NullableIntFieldUpdateOperationsInput | number | null
     Telphone?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     ResumeURL?: NullableStringFieldUpdateOperationsInput | string | null
     hasExperience?: BoolFieldUpdateOperationsInput | boolean
@@ -8020,7 +8020,7 @@ export namespace Prisma {
     Bdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     age?: NullableIntFieldUpdateOperationsInput | number | null
     Telphone?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     ResumeURL?: NullableStringFieldUpdateOperationsInput | string | null
     hasExperience?: BoolFieldUpdateOperationsInput | boolean
@@ -8045,7 +8045,7 @@ export namespace Prisma {
     Bdate?: Date | string | null
     age?: number | null
     Telphone?: string | null
-    Email?: string | null
+    Email: string
     password: string
     ResumeURL?: string | null
     hasExperience?: boolean
@@ -8068,7 +8068,7 @@ export namespace Prisma {
     Bdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     age?: NullableIntFieldUpdateOperationsInput | number | null
     Telphone?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     ResumeURL?: NullableStringFieldUpdateOperationsInput | string | null
     hasExperience?: BoolFieldUpdateOperationsInput | boolean
@@ -8092,7 +8092,7 @@ export namespace Prisma {
     Bdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     age?: NullableIntFieldUpdateOperationsInput | number | null
     Telphone?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     ResumeURL?: NullableStringFieldUpdateOperationsInput | string | null
     hasExperience?: BoolFieldUpdateOperationsInput | boolean
@@ -8116,7 +8116,7 @@ export namespace Prisma {
     GeneralBe?: string | null
     location: string
     Telcontact?: string | null
-    Email?: string | null
+    Email: string
     WebsiteURL?: string | null
     password: string
     createdAt?: Date | string
@@ -8134,7 +8134,7 @@ export namespace Prisma {
     GeneralBe?: string | null
     location: string
     Telcontact?: string | null
-    Email?: string | null
+    Email: string
     WebsiteURL?: string | null
     password: string
     createdAt?: Date | string
@@ -8151,7 +8151,7 @@ export namespace Prisma {
     GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
     Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8169,7 +8169,7 @@ export namespace Prisma {
     GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
     Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8187,7 +8187,7 @@ export namespace Prisma {
     GeneralBe?: string | null
     location: string
     Telcontact?: string | null
-    Email?: string | null
+    Email: string
     WebsiteURL?: string | null
     password: string
     createdAt?: Date | string
@@ -8203,7 +8203,7 @@ export namespace Prisma {
     GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
     Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8220,7 +8220,7 @@ export namespace Prisma {
     GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
     Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9541,7 +9541,7 @@ export namespace Prisma {
     GeneralBe?: string | null
     location: string
     Telcontact?: string | null
-    Email?: string | null
+    Email: string
     WebsiteURL?: string | null
     password: string
     createdAt?: Date | string
@@ -9558,7 +9558,7 @@ export namespace Prisma {
     GeneralBe?: string | null
     location: string
     Telcontact?: string | null
-    Email?: string | null
+    Email: string
     WebsiteURL?: string | null
     password: string
     createdAt?: Date | string
@@ -9624,7 +9624,7 @@ export namespace Prisma {
     GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
     Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9641,7 +9641,7 @@ export namespace Prisma {
     GeneralBe?: NullableStringFieldUpdateOperationsInput | string | null
     location?: StringFieldUpdateOperationsInput | string
     Telcontact?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     WebsiteURL?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9696,7 +9696,7 @@ export namespace Prisma {
     Bdate?: Date | string | null
     age?: number | null
     Telphone?: string | null
-    Email?: string | null
+    Email: string
     password: string
     ResumeURL?: string | null
     hasExperience?: boolean
@@ -9720,7 +9720,7 @@ export namespace Prisma {
     Bdate?: Date | string | null
     age?: number | null
     Telphone?: string | null
-    Email?: string | null
+    Email: string
     password: string
     ResumeURL?: string | null
     hasExperience?: boolean
@@ -9799,7 +9799,7 @@ export namespace Prisma {
     Bdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     age?: NullableIntFieldUpdateOperationsInput | number | null
     Telphone?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     ResumeURL?: NullableStringFieldUpdateOperationsInput | string | null
     hasExperience?: BoolFieldUpdateOperationsInput | boolean
@@ -9823,7 +9823,7 @@ export namespace Prisma {
     Bdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     age?: NullableIntFieldUpdateOperationsInput | number | null
     Telphone?: NullableStringFieldUpdateOperationsInput | string | null
-    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    Email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     ResumeURL?: NullableStringFieldUpdateOperationsInput | string | null
     hasExperience?: BoolFieldUpdateOperationsInput | boolean

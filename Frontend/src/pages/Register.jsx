@@ -75,31 +75,48 @@ function Register() {
                 throw { error: "Please agree to the Terms of Use and Privacy Policy" };
             }
 
-            // Call API
+            // Call API with updated authAPI
             const result = await authAPI.registerUser(jobSeekerData);
             console.log("User registration successful:", result);
 
-            setSuccess("Registration successful! You can now login.");
+            // Check if registration was successful
+            if (result.success) {
+                setSuccess(result.message || "Registration successful! You can now login.");
 
-            // Reset form
-            setJobSeekerData({
-                identificationNumber: "",
-                firstName: "",
-                lastName: "",
-                phoneNumber: "",
-                email: "",
-                password: "",
-                termsAgreed: false
-            });
+                // Reset form
+                setJobSeekerData({
+                    identificationNumber: "",
+                    firstName: "",
+                    lastName: "",
+                    phoneNumber: "",
+                    email: "",
+                    password: "",
+                    termsAgreed: false
+                });
 
-            // Optionally redirect to login after a delay
-            setTimeout(() => {
-                window.location.href = "/login";
-            }, 2000);
+                // Optionally redirect to login after a delay
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 2000);
+            } else {
+                throw { error: result.error || "Registration failed" };
+            }
 
         } catch (err) {
             console.error("Registration error:", err);
-            setError(err.error || "Registration failed. Please try again.");
+
+            // Handle different error formats
+            let errorMessage = "Registration failed. Please try again.";
+
+            if (err.error) {
+                errorMessage = err.error;
+            } else if (err.message) {
+                errorMessage = err.message;
+            } else if (typeof err === 'string') {
+                errorMessage = err;
+            }
+
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
@@ -124,32 +141,49 @@ function Register() {
                 throw { error: "Please agree to the Terms of Use and Privacy Policy" };
             }
 
-            // Call API
+            // Call API with updated authAPI
             const result = await authAPI.registerCompany(companyData);
             console.log("Company registration successful:", result);
 
-            setSuccess("Company registration successful! You can now login.");
+            // Check if registration was successful
+            if (result.success) {
+                setSuccess(result.message || "Company registration successful! You can now login.");
 
-            // Reset form
-            setCompanyData({
-                companyName: "",
-                industry: "",
-                companySize: "",
-                location: "",
-                phoneNumber: "",
-                email: "",
-                password: "",
-                termsAgreed: false
-            });
+                // Reset form
+                setCompanyData({
+                    companyName: "",
+                    industry: "",
+                    companySize: "",
+                    location: "",
+                    phoneNumber: "",
+                    email: "",
+                    password: "",
+                    termsAgreed: false
+                });
 
-            // Optionally redirect to login after a delay
-            setTimeout(() => {
-                window.location.href = "/login";
-            }, 2000);
+                // Optionally redirect to login after a delay
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 2000);
+            } else {
+                throw { error: result.error || "Registration failed" };
+            }
 
         } catch (err) {
             console.error("Company registration error:", err);
-            setError(err.error || "Registration failed. Please try again.");
+
+            // Handle different error formats
+            let errorMessage = "Registration failed. Please try again.";
+
+            if (err.error) {
+                errorMessage = err.error;
+            } else if (err.message) {
+                errorMessage = err.message;
+            } else if (typeof err === 'string') {
+                errorMessage = err;
+            }
+
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
