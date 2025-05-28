@@ -63,21 +63,21 @@ export const JobModel = {
       throw new Error(`Company with ID ${jobData.companyId} not found`);
     }
       const job = await db.job.create({
-      data : {
-        title : jobData.title,
-        companyId: jobData.companyId,
-        jobType: jobData.jobType,
-        minSalary: jobData.minSalary,
-        maxSalary: jobData.maxSalary,
-        categories: jobData.categories,
-        desciption: jobData.description,
-        responbility: jobData.responsibility,
-        qualification: jobData.qualification,
-        benenfit: jobData.benefit,
-        workingHours: jobData.workingHours,
-        published: jobData.published
-      }
-    });
+  data: {
+    title: jobData.title,
+    Desciption: jobData.description,         // match schema
+    Responbility: jobData.responsibility,    // match schema
+    Qualification: jobData.qualification,    // match schema
+    Benenfit: jobData.benefit,               // match schema
+    workingHours: jobData.workingHours,
+    JobType: jobData.jobType,                // match schema
+    minSalary: jobData.minSalary,
+    maxSalary: jobData.maxSalary,
+    published: jobData.published,
+    CompanyId: jobData.companyId,            // match schema
+    categories: jobData.categories,          // if this is a string[] or relation, adjust accordingly
+  }
+});
     return job;
     } 
     catch (error) {
